@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kittutools - Fast. Secure. 100% Free Online Tools</title>
+    <meta name="description" content="Kittutools offers 20+ fast, secure, and 100% free online utility tools including JPG to PDF converter, image editors, SEO text utilities, and developer tools. All client-side processed.">
+    <meta name="keywords" content="jpg to pdf, free online tools, image converter, word counter, qr generator, json formatter, kittutools">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Kittutools - Fast. Secure. 100% Free Online Tools">
+    <meta property="og:description" content="Convert JPG to PDF, resize images, generate QR codes, format JSON and more instantly in your browser with zero server uploads.">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#000000',
+                            card: '#0a0a0a',
+                            border: '#1f1f1f',
+                            red: '#EF4444',
+                            'red-hover': '#DC2626',
+                            muted: '#9CA3AF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- jsPDF CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #EF4444;
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 25px -5px rgba(239, 68, 68, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col selection:bg-red-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-black/80 border-b border-neutral-800 transition-all duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 gap-4">
+
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-1 text-2xl font-black tracking-tight group focus:outline-none">
+                    <span class="text-white group-hover:text-neutral-200 transition-colors">Kittutools</span>
+                    <span class="text-red-500 inline-block w-2.5 h-2.5 rounded-full bg-red-500 group-hover:scale-125 transition-transform"></span>
+                </a>
+
+                <!-- Search Bar -->
+                <div class="relative flex-1 max-w-md hidden md:block">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral-400">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </div>
+                    <input
+                        type="text"
+                        id="global-search-input"
+                        placeholder="Search 20+ tools (e.g. JPG to PDF, QR, JSON)..."
+                        class="w-full pl-10 pr-10 py-2 bg-neutral-900/90 border border-neutral-800 rounded-xl text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all"
+                    >
+                    <button id="clear-search-btn" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-neutral-400 hover:text-white">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Navigation Links & Featured Tool Button -->
+                <nav class="flex items-center space-x-2 sm:space-x-4">
+                    <a href="#categories-section" class="hidden sm:inline-flex text-sm text-neutral-400 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-neutral-900">
+                        Categories
+                    </a>
+                    <button
+                        onclick="openJpgToPdfModal()"
+                        class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium text-sm px-4 py-2 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95"
+                    >
+                        <i data-lucide="file-up" class="w-4 h-4"></i>
+                        <span>JPG to PDF</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Mobile Search Bar -->
+            <div class="pb-3 md:hidden">
+                <div class="relative w-full">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral-400">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </div>
+                    <input
+                        type="text"
+                        id="mobile-search-input"
+                        placeholder="Search 20+ tools..."
+                        class="w-full pl-10 pr-10 py-2 bg-neutral-900 border border-neutral-800 rounded-xl text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-red-500 transition-all"
+                    >
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-12 overflow-hidden border-b border-neutral-900">
+        <!-- Background Radial Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-300 mb-6">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span class="font-medium">100% Client-Side Processing • Maximum Privacy</span>
+            </div>
+
+            <!-- Heading -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
+                Kittutools <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-600">— Fast. Secure.</span><br>100% Free Tools
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-neutral-400 mb-8 font-normal leading-relaxed">
+                All-in-one suite of powerful browser-based web tools. Convert images to PDF, compress files, format code, and optimize text without uploading files to any external server.
+            </p>
+
+            <!-- Quick Action / Stats Highlights -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto pt-4 text-left">
+                <div class="bg-neutral-950 border border-neutral-800/80 p-4 rounded-2xl">
+                    <div class="text-red-500 mb-1"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+                    <div class="text-white font-semibold text-sm">100% Private</div>
+                    <div class="text-neutral-500 text-xs">Files stay in your browser</div>
+                </div>
+                <div class="bg-neutral-950 border border-neutral-800/80 p-4 rounded-2xl">
+                    <div class="text-red-500 mb-1"><i data-lucide="zap" class="w-5 h-5"></i></div>
+                    <div class="text-white font-semibold text-sm">Lightning Fast</div>
+                    <div class="text-neutral-500 text-xs">Instant conversion & download</div>
+                </div>
+                <div class="bg-neutral-950 border border-neutral-800/80 p-4 rounded-2xl">
+                    <div class="text-red-500 mb-1"><i data-lucide="gift" class="w-5 h-5"></i></div>
+                    <div class="text-white font-semibold text-sm">Zero Cost</div>
+                    <div class="text-neutral-500 text-xs">No signup, no hidden limits</div>
+                </div>
+                <div class="bg-neutral-950 border border-neutral-800/80 p-4 rounded-2xl">
+                    <div class="text-red-500 mb-1"><i data-lucide="layers" class="w-5 h-5"></i></div>
+                    <div class="text-white font-semibold text-sm">20+ Utilities</div>
+                    <div class="text-neutral-500 text-xs">PDF, Images, Text & Dev tools</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main id="categories-section" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Category Tabs & Active Count -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10 pb-4 border-b border-neutral-800">
+            <!-- Tabs -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="category-tabs">
+                <button data-category="all" class="category-btn active bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all">
+                    All Tools
+                </button>
+                <button data-category="pdf" class="category-btn bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-800 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all">
+                    PDF Tools
+                </button>
+                <button data-category="image" class="category-btn bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-800 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all">
+                    Image Tools
+                </button>
+                <button data-category="text" class="category-btn bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-800 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all">
+                    Text / SEO Tools
+                </button>
+                <button data-category="utility" class="category-btn bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-800 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all">
+                    Utilities
+                </button>
+            </div>
+
+            <!-- Active Filter Status -->
+            <div class="text-sm text-neutral-400 font-medium">
+                Showing <span id="visible-count" class="text-white font-bold">20</span> tools
+            </div>
+        </div>
+
+        <!-- No Results Found State -->
+        <div id="no-results" class="hidden text-center py-16 bg-neutral-950 border border-neutral-900 rounded-3xl mb-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-neutral-900 text-red-500 mb-4">
+                <i data-lucide="search-x" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">No matching tools found</h3>
+            <p class="text-neutral-400 text-sm max-w-md mx-auto mb-6">
+                We couldn't find any tools matching your search criteria. Try searching for "JPG to PDF", "Word Counter", or "QR Code".
+            </p>
+            <button onclick="resetSearch()" class="bg-neutral-800 hover:bg-neutral-700 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-colors">
+                Clear Search Filter
+            </button>
+        </div>
+
+        <!-- Tool Cards Container (4 Sections Grid) -->
+        <div id="tools-container" class="space-y-12">
+
+            <!-- Section 1: PDF Tools -->
+            <section class="tool-section" data-section="pdf">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-2 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white tracking-tight">PDF Tools</h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">5 Tools</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+                    <!-- Card 1: JPG to PDF (Functional) -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="JPG to PDF Converter Image to PDF"
+                         data-category="pdf"
+                         onclick="openJpgToPdfModal()">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i data-lucide="file-up" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">JPG to PDF Converter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Convert JPG, PNG, and WebP images into a single PDF document in seconds with full layout control.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Merge PDF -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Merge PDF Combine PDF"
+                         data-category="pdf"
+                         onclick="triggerUpcomingTool('Merge PDF')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="layers" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Merge PDF</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Combine multiple PDF files into one ordered document with instant client-side processing.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Split PDF -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Split PDF Extract Pages"
+                         data-category="pdf"
+                         onclick="triggerUpcomingTool('Split PDF')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="scissors" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Split PDF</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Separate specific pages or split entire PDF documents into independent individual files.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Compress PDF -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Compress PDF Reduce PDF Size"
+                         data-category="pdf"
+                         onclick="triggerUpcomingTool('Compress PDF')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="minimize-2" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Compress PDF</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Reduce PDF file size for easier sharing without sacrificing document quality.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: PDF to Word -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="PDF to Word Docx Converter"
+                         data-category="pdf"
+                         onclick="triggerUpcomingTool('PDF to Word')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="file-type-2" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">PDF to Word</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Extract readable text and formatting from PDF files into editable document formats.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Section 2: Image Tools -->
+            <section class="tool-section" data-section="image">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-2 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="image" class="w-5 h-5"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white tracking-tight">Image Tools</h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">5 Tools</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+                    <!-- Card 6: PNG to JPG -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="PNG to JPG Converter Transparent Image"
+                         data-category="image"
+                         onclick="triggerUpcomingTool('PNG to JPG')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="repeat" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">PNG to JPG</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Convert PNG images to JPG format instantly with custom background color fill.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Image Resizer -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Image Resizer Dimension Resize"
+                         data-category="image"
+                         onclick="triggerUpcomingTool('Image Resizer')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="scaling" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Image Resizer</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Batch resize images by pixels or percentage while maintaining exact aspect ratio.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: Image Compressor -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Image Compressor Reduce Image Size KB MB"
+                         data-category="image"
+                         onclick="triggerUpcomingTool('Image Compressor')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="shrink" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Image Compressor</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Compress JPG, PNG and WebP files up to 80% without visible quality loss.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 9: SVG to PNG -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="SVG to PNG Vector Converter"
+                         data-category="image"
+                         onclick="triggerUpcomingTool('SVG to PNG')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="vector" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">SVG to PNG</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Convert scalable vector graphics into high-resolution PNG raster images.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 10: WebP Converter -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="WebP Converter WebP to JPG PNG"
+                         data-category="image"
+                         onclick="triggerUpcomingTool('WebP Converter')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="file-image" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">WebP Converter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Convert modern WebP images to standard PNG/JPG formats seamlessly.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Section 3: Text & SEO Tools -->
+            <section class="tool-section" data-section="text">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-2 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="type" class="w-5 h-5"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white tracking-tight">Text & SEO Tools</h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">5 Tools</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+                    <!-- Card 11: Word Counter -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Word & Character Counter Letter Count Paragraph"
+                         data-category="text"
+                         onclick="triggerUpcomingTool('Word & Character Counter')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="text-cursor" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Word & Character Counter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Real-time word, character, sentence, paragraph, and reading time counter.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 12: Case Converter -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Case Converter Uppercase Lowercase Titlecase"
+                         data-category="text"
+                         onclick="triggerUpcomingTool('Case Converter')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="case-sensitive" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Case Converter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Transform text between UPPERCASE, lowercase, Title Case, camelCase, and snake_case.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 13: Slug Generator -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="URL Slug Generator SEO Friendly URL"
+                         data-category="text"
+                         onclick="triggerUpcomingTool('Slug Generator')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="link" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">URL Slug Generator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Generate clean, SEO-friendly web URL slugs from article titles or headers.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 14: Meta Tag Generator -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Meta Tag Generator SEO Open Graph"
+                         data-category="text"
+                         onclick="triggerUpcomingTool('Meta Tag Generator')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="code" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Meta Tag Generator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Create optimized HTML meta tags and Open Graph tags for search engine visibility.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 15: Lorem Ipsum Generator -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Lorem Ipsum Generator Dummy Text Placeholder"
+                         data-category="text"
+                         onclick="triggerUpcomingTool('Lorem Ipsum Generator')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="align-left" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Lorem Ipsum Generator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Generate customized dummy text placeholder paragraphs and words for design mockups.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Section 4: Utilities -->
+            <section class="tool-section" data-section="utility">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-2 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="wrench" class="w-5 h-5"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white tracking-tight">Utilities</h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">5 Tools</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+                    <!-- Card 16: QR Code Generator -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="QR Code Generator Barcode Scan URL"
+                         data-category="utility"
+                         onclick="triggerUpcomingTool('QR Code Generator')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="qr-code" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">QR Code Generator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Create downloadable custom QR codes for web URLs, Wi-Fi networks, and contact text.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 17: Password Generator -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Strong Password Generator Security Random Key"
+                         data-category="utility"
+                         onclick="triggerUpcomingTool('Password Generator')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="key-round" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Password Generator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Generate ultra-secure cryptographically random passwords with custom symbols and length.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 18: JSON Formatter -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="JSON Formatter Prettifier Validator Beautifier"
+                         data-category="utility"
+                         onclick="triggerUpcomingTool('JSON Formatter')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="file-json" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">JSON Formatter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Beautify, validate, and minify complex JSON data objects with syntax check.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 19: Base64 Encoder/Decoder -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Base64 Encoder Decoder String Binary"
+                         data-category="utility"
+                         onclick="triggerUpcomingTool('Base64 Encoder/Decoder')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="binary" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Base64 Encoder / Decoder</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Encode string text into Base64 format or decode encrypted Base64 strings safely.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 20: Color Picker & Palette -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Color Picker HEX RGB HSL Palette"
+                         data-category="utility"
+                         onclick="triggerUpcomingTool('Color Picker & Palette')">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                                <i data-lucide="pipette" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Color Picker & Palette</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Pick colors, convert HEX to RGB/HSL, and generate harmonized UI color palettes.</p>
+                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Open Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto bg-neutral-950 border-t border-neutral-900 py-12 text-neutral-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-neutral-900">
+                <!-- Brand Info -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left gap-2">
+                    <a href="#" class="flex items-center gap-1 text-xl font-extrabold tracking-tight text-white">
+                        <span>Kittutools</span>
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                    </a>
+                    <p class="text-xs text-neutral-500 max-w-sm">
+                        High-performance, privacy-first online tools for developers, designers, and daily productivity. No files sent to servers.
+                    </p>
+                </div>
+
+                <!-- Footer Navigation / AdSense Policy Links -->
+                <div class="flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
+                    <button onclick="openModal('privacy-modal')" class="hover:text-white transition-colors focus:outline-none">Privacy Policy</button>
+                    <button onclick="openModal('terms-modal')" class="hover:text-white transition-colors focus:outline-none">Terms of Service</button>
+                    <button onclick="openModal('contact-modal')" class="hover:text-white transition-colors focus:outline-none">Contact Us</button>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+                <p>Kittutools © 2026. All rights reserved.</p>
+                <p class="flex items-center gap-1">
+                    <span>Designed with</span>
+                    <i data-lucide="heart" class="w-3.5 h-3.5 text-red-500 fill-red-500"></i>
+                    <span>for instant web productivity.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JPG to PDF Converter Modal -->
+    <div id="jpg-to-pdf-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="file-up" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">JPG / Image to PDF Converter</h2>
+                        <p class="text-xs text-neutral-400">Convert multiple images into a single PDF instantly in your browser</p>
+                    </div>
+                </div>
+                <button onclick="closeJpgToPdfModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Drag and Drop Dropzone -->
+                <div id="image-dropzone" class="border-2 border-dashed border-neutral-800 hover:border-red-500/60 bg-neutral-900/30 hover:bg-neutral-900/60 rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 group">
+                    <input type="file" id="image-file-input" accept="image/jpeg, image/jpg, image/png, image/webp" multiple class="hidden">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-neutral-900 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors mb-3">
+                        <i data-lucide="upload-cloud" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-base font-semibold text-white mb-1">Drag & Drop images here, or <span class="text-red-500 underline group-hover:text-red-400">Browse Files</span></h3>
+                    <p class="text-xs text-neutral-500">Supports JPG, JPEG, PNG, WebP • Batch selection allowed</p>
+                </div>
+
+                <!-- PDF Options Bar -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800/80">
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Page Orientation</label>
+                        <select id="pdf-orientation" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                            <option value="portrait">Portrait (Vertical)</option>
+                            <option value="landscape">Landscape (Horizontal)</option>
+                            <option value="auto">Auto (Match Image)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Page Margin</label>
+                        <select id="pdf-margin" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                            <option value="none">No Margin (Full Bleed)</option>
+                            <option value="small" selected>Small Margin (10mm)</option>
+                            <option value="large">Big Margin (20mm)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">PDF Document Title</label>
+                        <input type="text" id="pdf-filename" value="Kittutools-Converted" placeholder="Document name" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                    </div>
+                </div>
+
+                <!-- Thumbnail Preview Grid Section -->
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <h4 class="text-sm font-bold text-white">Selected Images</h4>
+                            <span id="selected-image-count" class="text-xs font-semibold px-2 py-0.5 rounded-md bg-neutral-900 text-neutral-400 border border-neutral-800">0 files</span>
+                        </div>
+                        <button id="clear-all-images-btn" onclick="clearAllImages()" class="hidden text-xs text-neutral-400 hover:text-red-400 transition-colors">
+                            Clear All
+                        </button>
+                    </div>
+
+                    <!-- Empty state preview -->
+                    <div id="empty-preview-state" class="text-center py-10 border border-neutral-900 rounded-2xl bg-neutral-950/50">
+                        <p class="text-xs text-neutral-500">No images added yet. Upload files above to preview thumbnails here.</p>
+                    </div>
+
+                    <!-- Active Thumbnails Grid -->
+                    <div id="image-thumbnails-grid" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-72 overflow-y-auto pr-1"></div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>Processed 100% locally in your web browser.</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeJpgToPdfModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Cancel
+                    </button>
+                    <button id="convert-pdf-btn" onclick="generateAndDownloadPdf()" disabled class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Convert & Download PDF</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Legal Modals (Privacy Policy, Terms of Service, Contact Us) -->
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-2xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i data-lucide="shield" class="w-5 h-5 text-red-500"></i>
+                    <span>Privacy Policy</span>
+                </h3>
+                <button onclick="closeModal('privacy-modal')" class="p-2 text-neutral-400 hover:text-white rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 text-xs text-neutral-300 leading-relaxed max-h-[60vh] overflow-y-auto">
+                <p><strong>Effective Date:</strong> January 1, 2026</p>
+                <p>At <strong>Kittutools</strong>, accessible from kittutools.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document outlines the types of information that is collected and recorded by Kittutools and how we use it.</p>
+                <h4 class="text-sm font-semibold text-white pt-2">1. Browser-Based Client-Side Processing</h4>
+                <p>Kittutools operates on a strict zero-server storage model for tool execution. Files uploaded to tools such as the JPG to PDF converter are processed 100% locally in your web browser memory. No files, documents, or personal images are ever transmitted to or stored on external servers.</p>
+                <h4 class="text-sm font-semibold text-white pt-2">2. Google AdSense & Cookies</h4>
+                <p>Kittutools may use third-party vendor cookies (such as Google DoubleClick cookies) to serve ads based on user visits to this website or other web pages. Users can opt out of personalized advertising by visiting Google's Ads Settings.</p>
+                <h4 class="text-sm font-semibold text-white pt-2">3. Log Files</h4>
+                <p>Like standard web servers, anonymous log files may capture basic non-personally identifiable information such as internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamps, and referring pages.</p>
+                <h4 class="text-sm font-semibold text-white pt-2">4. Contact Us</h4>
+                <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us via our Contact modal.</p>
+            </div>
+            <div class="flex justify-end px-6 py-4 border-t border-neutral-800 bg-neutral-900/50">
+                <button onclick="closeModal('privacy-modal')" class="bg-red-600 hover:bg-red-700 text-white font-medium text-xs px-5 py-2 rounded-xl transition-colors">
+                    I Understand
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="terms-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-2xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i data-lucide="file-check" class="w-5 h-5 text-red-500"></i>
+                    <span>Terms of Service</span>
+                </h3>
+                <button onclick="closeModal('terms-modal')" class="p-2 text-neutral-400 hover:text-white rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 text-xs text-neutral-300 leading-relaxed max-h-[60vh] overflow-y-auto">
+                <p>Welcome to <strong>Kittutools</strong>! By accessing or using our website and web applications, you agree to comply with and be bound by these Terms of Service.</p>
+                <h4 class="text-sm font-semibold text-white pt-2">1. Use of Services</h4>
+                <p>Kittutools provides 100% free online productivity tools. You are permitted to use our services for personal, educational, or commercial purposes free of charge without registration.</p>
+                <h4 class="text-sm font-semibold text-white pt-2">2. Prohibited Conduct</h4>
+                <p>You agree not to attempt to reverse engineer, disrupt service performance, or use automated scrapers that excessively tax website assets.</p>
+                <h4 class="text-sm font-semibold text-white pt-2">3. Disclaimer of Warranties</h4>
+                <p>All tools are provided on an "as is" and "as available" basis without warranties of any kind. While we strive for 100% reliability, Kittutools shall not be held liable for any data loss or output discrepancies resulting from browser processing.</p>
+            </div>
+            <div class="flex justify-end px-6 py-4 border-t border-neutral-800 bg-neutral-900/50">
+                <button onclick="closeModal('terms-modal')" class="bg-red-600 hover:bg-red-700 text-white font-medium text-xs px-5 py-2 rounded-xl transition-colors">
+                    Accept Terms
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-lg bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5 text-red-500"></i>
+                    <span>Contact Kittutools Team</span>
+                </h3>
+                <button onclick="closeModal('contact-modal')" class="p-2 text-neutral-400 hover:text-white rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <form onsubmit="handleContactSubmit(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-neutral-300 mb-1">Your Name</label>
+                    <input type="text" required placeholder="John Doe" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-500 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-neutral-300 mb-1">Email Address</label>
+                    <input type="email" required placeholder="support@kittutools.com" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-500 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-neutral-300 mb-1">Message / Feedback</label>
+                    <textarea rows="4" required placeholder="How can we improve Kittutools for you?" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-500 transition-colors resize-none"></textarea>
+                </div>
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold text-xs py-3 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/jpg-to-pdf.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        document.addEventListener("DOMContentLoaded", function() {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
