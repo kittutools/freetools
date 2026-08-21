@@ -1,0 +1,28 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "A comprehensive collection of 20+ free online utility tools including PDF converters, image editors, and SEO text tools.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kittutools/freetools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kittutools/freetools/issues"
+  },
+  "homepage": "https://github.com/kittutools/freetools#readme",
+  "dependencies": {
+    "@playwright/test": "^1.62.1",
+    "playwright": "^1.62.1"
+  }
+}
