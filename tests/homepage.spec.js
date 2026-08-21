@@ -69,9 +69,50 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
         await expect(modal).toBeVisible();
 
         // Check controls presence
+        await expect(page.locator('#pdf-page-size')).toBeVisible();
         await expect(page.locator('#pdf-orientation')).toBeVisible();
+        await expect(page.locator('#pdf-quality')).toBeVisible();
         await expect(page.locator('#pdf-margin')).toBeVisible();
         await expect(page.locator('#pdf-filename')).toBeVisible();
+
+        // Verify orientation gets disabled when 'Auto (Fit Image Size)' is selected
+        await expect(page.locator('#pdf-orientation')).toBeEnabled();
+        await page.locator('#pdf-page-size').selectOption('auto');
+        await expect(page.locator('#pdf-orientation')).toBeDisabled();
+        await page.locator('#pdf-page-size').selectOption('a4');
+        await expect(page.locator('#pdf-orientation')).toBeEnabled();
+
+        // Upload sample image to test thumbnail rendering, deletion, and clear all
+        const buffer = Buffer.from(
+            'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+            'base64'
+        );
+        await page.setInputFiles('#image-file-input', {
+            name: 'test-sample.png',
+            mimeType: 'image/png',
+            buffer: buffer
+        });
+
+        // Verify thumbnail visible
+        await expect(page.locator('#image-thumbnails-grid')).toBeVisible();
+        await expect(page.locator('#selected-image-count')).toHaveText('1 file');
+        await expect(page.locator('#convert-pdf-btn')).toBeEnabled();
+        await expect(page.locator('#clear-all-images-btn')).toBeVisible();
+
+        // Test Clear All button
+        await page.locator('#clear-all-images-btn').click();
+        await expect(page.locator('#selected-image-count')).toHaveText('0 files');
+        await expect(page.locator('#empty-preview-state')).toBeVisible();
+
+        // Upload again to test individual delete button
+        await page.setInputFiles('#image-file-input', {
+            name: 'test-sample2.png',
+            mimeType: 'image/png',
+            buffer: buffer
+        });
+        await expect(page.locator('#selected-image-count')).toHaveText('1 file');
+        await page.locator('#image-thumbnails-grid button:has([data-lucide="trash-2"])').click();
+        await expect(page.locator('#selected-image-count')).toHaveText('0 files');
 
         // Take screenshot of modal UI
         await page.screenshot({ path: 'screenshot-jpg-to-pdf-modal.png' });
@@ -97,6 +138,9 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
         // Open Contact Us
         await page.locator('button:has-text("Contact Us")').click();
         await expect(page.locator('#contact-modal')).toBeVisible();
+        await page.locator('#contact-modal input[type="text"]').fill('John Doe');
+        await page.locator('#contact-modal input[type="email"]').fill('john@example.com');
+        await page.locator('#contact-modal textarea').fill('Test message');
         await page.locator('#contact-modal button[type="submit"]').click();
         await expect(page.locator('#contact-modal')).not.toBeVisible();
     });
