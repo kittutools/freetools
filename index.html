@@ -67,6 +67,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
 
+    <!-- QRCode.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- CryptoJS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -226,7 +232,7 @@
 
             <!-- Active Filter Status -->
             <div class="text-sm text-neutral-400 font-medium">
-                Showing <span id="visible-count" class="text-white font-bold">25</span> tools
+                Showing <span id="visible-count" class="text-white font-bold">26</span> tools
             </div>
         </div>
 
@@ -678,103 +684,122 @@
                     <div class="p-2 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
                         <i data-lucide="wrench" class="w-5 h-5"></i>
                     </div>
-                    <h2 class="text-xl font-bold text-white tracking-tight">Utilities</h2>
-                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">5 Tools</span>
+                    <h2 class="text-xl font-bold text-white tracking-tight">Utilities & Developer Tools</h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">6 Tools</span>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
-                    <!-- Card 16: QR Code Generator -->
+                    <!-- Card 16: Premium QR Code Generator -->
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
-                         data-name="QR Code Generator Barcode Scan URL"
+                         data-name="Premium QR Code Generator Barcode Scan URL WiFi Contact PNG SVG"
                          data-category="utility"
-                         onclick="triggerUpcomingTool('QR Code Generator')">
+                         onclick="openQrGeneratorModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <i data-lucide="qr-code" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
-                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">QR Code Generator</h3>
-                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Create downloadable custom QR codes for web URLs, Wi-Fi networks, and contact text.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Premium QR Code Generator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Convert text, website URLs, or Wi-Fi details into customizable QR codes with high-res export.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
 
-                    <!-- Card 17: Password Generator -->
+                    <!-- Card 17: Ultimate Password Generator -->
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
-                         data-name="Strong Password Generator Security Random Key"
+                         data-name="Ultimate Password Generator Security Random Key Strength Meter"
                          data-category="utility"
-                         onclick="triggerUpcomingTool('Password Generator')">
+                         onclick="openPasswordGeneratorModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <i data-lucide="key-round" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
-                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Password Generator</h3>
-                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Generate ultra-secure cryptographically random passwords with custom symbols and length.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Ultimate Password Generator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Generate high-security passwords with length slider, character toggles, and live strength meter.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
 
-                    <!-- Card 18: JSON Formatter -->
+                    <!-- Card 18: Advanced MD5 & SHA Hash Generator -->
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
-                         data-name="JSON Formatter Prettifier Validator Beautifier"
+                         data-name="Advanced MD5 SHA Hash Generator Cryptographic Security SHA1 SHA256 SHA512"
                          data-category="utility"
-                         onclick="triggerUpcomingTool('JSON Formatter')">
+                         onclick="openHashGeneratorModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
-                                <i data-lucide="file-json" class="w-6 h-6"></i>
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
-                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">JSON Formatter</h3>
-                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Beautify, validate, and minify complex JSON data objects with syntax check.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Advanced Hash Generator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Simultaneous real-time generation of MD5, SHA-1, SHA-256, and SHA-512 cryptographic hashes.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
 
-                    <!-- Card 19: Base64 Encoder/Decoder -->
+                    <!-- Card 19: Pro Color Picker & Converter -->
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
-                         data-name="Base64 Encoder Decoder String Binary"
+                         data-name="Pro Color Picker HEX RGB HSL CMYK EyeDropper Converter Canvas"
                          data-category="utility"
-                         onclick="triggerUpcomingTool('Base64 Encoder/Decoder')">
+                         onclick="openColorPickerModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
-                                <i data-lucide="binary" class="w-6 h-6"></i>
-                            </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
-                        </div>
-                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Base64 Encoder / Decoder</h3>
-                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Encode string text into Base64 format or decode encrypted Base64 strings safely.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                        </div>
-                    </div>
-
-                    <!-- Card 20: Color Picker & Palette -->
-                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
-                         data-name="Color Picker HEX RGB HSL Palette"
-                         data-category="utility"
-                         onclick="triggerUpcomingTool('Color Picker & Palette')">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <i data-lucide="pipette" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
-                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Color Picker & Palette</h3>
-                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Pick colors, convert HEX to RGB/HSL, and generate harmonized UI color palettes.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Pro Color Picker & Converter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Interactive visual color canvas, EyeDropper API integration, and HEX, RGB, HSL, CMYK codes.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 20: Exact Age Calculator -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Exact Age Calculator Date of Birth Years Months Days Birthday Stats"
+                         data-category="utility"
+                         onclick="openAgeCalculatorModal()">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i data-lucide="calendar" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Exact Age Calculator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Calculate exact age in Years, Months, and Days along with total weeks, hours lived, and next birthday countdown.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 21: Smart JSON Formatter & Validator -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Smart JSON Formatter Validator Beautifier Minify Syntax Error"
+                         data-category="utility"
+                         onclick="openJsonFormatterModal()">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i data-lucide="file-json" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Smart JSON Formatter & Validator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Beautify with 2 or 4 spaces, minify JSON, and validate real-time syntax errors.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
@@ -1175,6 +1200,535 @@
     <script src="js/case-converter.js"></script>
     <script src="js/lorem-ipsum.js"></script>
     <script src="js/remove-duplicates.js"></script>
+    <script src="js/qr-generator.js"></script>
+    <script src="js/password-generator.js"></script>
+    <script src="js/hash-generator.js"></script>
+    <script src="js/color-picker.js"></script>
+    <script src="js/age-calculator.js"></script>
+    <script src="js/json-formatter.js"></script>
+
+    <!-- Tool 1: Premium QR Code Generator Modal -->
+    <div id="qr-generator-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="qr-code" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Premium QR Code Generator</h2>
+                        <p class="text-xs text-neutral-400">Generate high-quality custom QR codes for text, URLs, or Wi-Fi networks</p>
+                    </div>
+                </div>
+                <button onclick="closeQrGeneratorModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <button id="qr-tab-text" onclick="switchQrType('text')" class="px-4 py-2 text-xs font-semibold rounded-xl bg-red-600 text-white transition-colors">Text / URL</button>
+                        <button id="qr-tab-wifi" onclick="switchQrType('wifi')" class="px-4 py-2 text-xs font-semibold rounded-xl bg-neutral-900 text-neutral-400 hover:text-white transition-colors">Wi-Fi Network</button>
+                    </div>
+
+                    <div id="qr-form-text">
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Enter Text or Website URL:</label>
+                        <input type="text" id="qr-text-input" value="https://kittutools.com" oninput="generateQrCode()" placeholder="e.g. https://example.com" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-500 transition-colors">
+                    </div>
+
+                    <div id="qr-form-wifi" class="hidden space-y-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1">Network Name (SSID):</label>
+                            <input type="text" id="qr-wifi-ssid" placeholder="Home WiFi" oninput="generateQrCode()" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1">Password:</label>
+                            <input type="password" id="qr-wifi-pass" placeholder="Password" oninput="generateQrCode()" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1">Encryption:</label>
+                            <select id="qr-wifi-enc" onchange="generateQrCode()" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                                <option value="WPA" selected>WPA/WPA2/WPA3</option>
+                                <option value="WEP">WEP</option>
+                                <option value="nopass">None (Open)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800">
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1">Foreground Color:</label>
+                            <div class="flex items-center gap-2">
+                                <input type="color" id="qr-fg-color" value="#000000" onchange="generateQrCode()" class="w-8 h-8 bg-transparent cursor-pointer rounded-lg border-0">
+                                <span id="qr-fg-label" class="text-xs font-mono text-neutral-400">#000000</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1">Background Color:</label>
+                            <div class="flex items-center gap-2">
+                                <input type="color" id="qr-bg-color" value="#ffffff" onchange="generateQrCode()" class="w-8 h-8 bg-transparent cursor-pointer rounded-lg border-0">
+                                <span id="qr-bg-label" class="text-xs font-mono text-neutral-400">#FFFFFF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1">Export Resolution:</label>
+                            <select id="qr-export-size" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                                <option value="200">200 x 200 px</option>
+                                <option value="500" selected>500 x 500 px (HD)</option>
+                                <option value="1000">1000 x 1000 px (Print)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1">File Format:</label>
+                            <select id="qr-export-format" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                                <option value="png" selected>PNG Image</option>
+                                <option value="svg">SVG Vector</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-neutral-900/40 p-6 rounded-2xl border border-neutral-800 text-center">
+                    <span class="text-xs font-semibold text-neutral-400 mb-4">Real-Time QR Preview</span>
+                    <div id="qr-preview-container" class="p-4 bg-white rounded-2xl border border-neutral-800 shadow-xl flex items-center justify-center min-w-[200px] min-h-[200px]"></div>
+                    <button onclick="downloadQrCode()" class="w-full mt-6 inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold text-xs py-3 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Download QR Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <span class="text-xs text-neutral-400 flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i> 100% Client-Side QR Generation</span>
+                <button onclick="closeQrGeneratorModal()" class="px-4 py-2 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 2: Ultimate Password Generator Modal -->
+    <div id="password-generator-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-2xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="key-round" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Ultimate Password Generator</h2>
+                        <p class="text-xs text-neutral-400">Generate un-hackable, high-security cryptographically random passwords</p>
+                    </div>
+                </div>
+                <button onclick="closePasswordGeneratorModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="text-xs font-semibold text-neutral-300">Generated Password Output</label>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-neutral-400">Strength:</span>
+                            <span id="pwd-strength-label" class="text-xs font-bold text-emerald-500">Strong</span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="pwd-display-output" readonly class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl px-4 py-3 text-base font-mono text-red-400 focus:outline-none">
+                    </div>
+                    <div class="w-full bg-neutral-900 h-2 rounded-full overflow-hidden border border-neutral-800 mt-2">
+                        <div id="pwd-strength-bar" class="h-2 rounded-full transition-all duration-300 bg-emerald-500" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-4 bg-neutral-900/40 p-5 rounded-2xl border border-neutral-800">
+                    <div>
+                        <div class="flex justify-between items-center text-xs mb-1">
+                            <span class="font-semibold text-neutral-300">Password Length:</span>
+                            <span id="pwd-length-val" class="font-bold text-red-500 text-sm">16</span>
+                        </div>
+                        <input type="range" id="pwd-length-slider" min="6" max="64" value="16" oninput="updatePasswordLengthLabel(this.value)" class="w-full h-2 bg-neutral-950 rounded-lg appearance-none cursor-pointer accent-red-500">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <label class="flex items-center gap-2 text-xs text-neutral-300 cursor-pointer select-none">
+                            <input type="checkbox" id="pwd-inc-upper" checked onchange="generatePassword()" class="w-4 h-4 accent-red-600 rounded">
+                            <span>Uppercase (A-Z)</span>
+                        </label>
+                        <label class="flex items-center gap-2 text-xs text-neutral-300 cursor-pointer select-none">
+                            <input type="checkbox" id="pwd-inc-lower" checked onchange="generatePassword()" class="w-4 h-4 accent-red-600 rounded">
+                            <span>Lowercase (a-z)</span>
+                        </label>
+                        <label class="flex items-center gap-2 text-xs text-neutral-300 cursor-pointer select-none">
+                            <input type="checkbox" id="pwd-inc-num" checked onchange="generatePassword()" class="w-4 h-4 accent-red-600 rounded">
+                            <span>Numbers (0-9)</span>
+                        </label>
+                        <label class="flex items-center gap-2 text-xs text-neutral-300 cursor-pointer select-none">
+                            <input type="checkbox" id="pwd-inc-sym" checked onchange="generatePassword()" class="w-4 h-4 accent-red-600 rounded">
+                            <span>Symbols (!@#$%)</span>
+                        </label>
+                    </div>
+
+                    <div class="pt-2 border-t border-neutral-800">
+                        <label class="flex items-center gap-2 text-xs text-neutral-300 cursor-pointer select-none">
+                            <input type="checkbox" id="pwd-exc-similar" onchange="generatePassword()" class="w-4 h-4 accent-red-600 rounded">
+                            <span>Exclude Similar Characters (i, l, 1, L, o, 0, O)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="generatePassword()" class="flex-1 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-white font-semibold text-xs py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 text-red-500"></i>
+                        <span>Regenerate</span>
+                    </button>
+                    <button onclick="copyAndGeneratePassword()" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold text-xs py-3 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95 flex items-center justify-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>Copy & Generate New</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <span class="text-xs text-neutral-400 flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i> 100% Client-Side Random Generation</span>
+                <button onclick="closePasswordGeneratorModal()" class="px-4 py-2 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 3: Advanced MD5 & SHA Hash Generator Modal -->
+    <div id="hash-generator-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Advanced MD5 & SHA Hash Generator</h2>
+                        <p class="text-xs text-neutral-400">Real-time simultaneous hash calculation for security and developers</p>
+                    </div>
+                </div>
+                <button onclick="closeHashGeneratorModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <div>
+                    <label class="block text-xs font-semibold text-neutral-300 mb-1">Enter Input String / Text:</label>
+                    <textarea id="hash-input-text" rows="3" oninput="generateHashes()" placeholder="Type or paste text here to generate hashes in real time..." class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl p-3.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-red-500 transition-colors resize-y">Kittutools</textarea>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-1">MD5 Hash (128-bit):</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="hash-out-md5" readonly class="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs font-mono text-neutral-200">
+                            <button onclick="copyHash('hash-out-md5', 'MD5')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all shadow-md shadow-red-600/10 flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-1">SHA-1 Hash (160-bit):</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="hash-out-sha1" readonly class="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs font-mono text-neutral-200">
+                            <button onclick="copyHash('hash-out-sha1', 'SHA-1')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all shadow-md shadow-red-600/10 flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-1">SHA-256 Hash (256-bit):</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="hash-out-sha256" readonly class="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs font-mono text-neutral-200">
+                            <button onclick="copyHash('hash-out-sha256', 'SHA-256')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all shadow-md shadow-red-600/10 flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-1">SHA-512 Hash (512-bit):</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="hash-out-sha512" readonly class="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs font-mono text-neutral-200">
+                            <button onclick="copyHash('hash-out-sha512', 'SHA-512')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all shadow-md shadow-red-600/10 flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <span class="text-xs text-neutral-400 flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i> 100% Local Cryptographic Hashing</span>
+                <button onclick="closeHashGeneratorModal()" class="px-4 py-2 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 4: Pro Color Picker & HEX/RGB Converter Modal -->
+    <div id="color-picker-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="pipette" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Pro Color Picker & Converter</h2>
+                        <p class="text-xs text-neutral-400">Interactive visual color canvas tool with EyeDropper and codes conversion</p>
+                    </div>
+                </div>
+                <button onclick="closeColorPickerModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="relative flex-1">
+                            <input type="color" id="color-native-picker" value="#EF4444" onchange="updateColorFromNativePicker(this.value)" class="w-full h-12 bg-neutral-900 rounded-2xl border border-neutral-800 cursor-pointer p-1">
+                        </div>
+                        <button onclick="pickColorWithEyeDropper()" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-3 rounded-2xl transition-all shadow-lg shadow-red-600/20 flex items-center gap-2">
+                            <i data-lucide="pipette" class="w-4 h-4"></i>
+                            <span>Eye-Dropper</span>
+                        </button>
+                    </div>
+
+                    <div id="color-preview-box" class="h-28 rounded-2xl border border-neutral-800 shadow-inner transition-colors" style="background-color: #EF4444;"></div>
+
+                    <div class="space-y-2 bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-neutral-400">Red (R): <strong id="color-val-r" class="text-white">239</strong></span>
+                            <input type="range" id="color-slider-r" min="0" max="255" value="239" oninput="updateColorFromSliders()" class="w-36 h-2 bg-neutral-950 rounded-lg appearance-none cursor-pointer accent-red-500">
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-neutral-400">Green (G): <strong id="color-val-g" class="text-white">68</strong></span>
+                            <input type="range" id="color-slider-g" min="0" max="255" value="68" oninput="updateColorFromSliders()" class="w-36 h-2 bg-neutral-950 rounded-lg appearance-none cursor-pointer accent-red-500">
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-neutral-400">Blue (B): <strong id="color-val-b" class="text-white">68</strong></span>
+                            <input type="range" id="color-slider-b" min="0" max="255" value="68" oninput="updateColorFromSliders()" class="w-36 h-2 bg-neutral-950 rounded-lg appearance-none cursor-pointer accent-red-500">
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-neutral-400">Alpha (A): <strong id="color-val-a" class="text-white">1.00</strong></span>
+                            <input type="range" id="color-slider-a" min="0" max="1" step="0.01" value="1.00" oninput="updateColorFromSliders()" class="w-36 h-2 bg-neutral-950 rounded-lg appearance-none cursor-pointer accent-red-500">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-1">HEX Code:</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="color-out-hex" readonly value="#EF4444" class="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs font-mono text-white">
+                            <button onclick="copyColorCode('color-out-hex', 'HEX Code')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-1">RGB Code:</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="color-out-rgb" readonly value="rgb(239, 68, 68)" class="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs font-mono text-white">
+                            <button onclick="copyColorCode('color-out-rgb', 'RGB Code')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-1">HSL Code:</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="color-out-hsl" readonly value="hsl(0, 84%, 60%)" class="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs font-mono text-white">
+                            <button onclick="copyColorCode('color-out-hsl', 'HSL Code')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-1">CMYK Code:</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="color-out-cmyk" readonly value="cmyk(0%, 72%, 72%, 6%)" class="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs font-mono text-white">
+                            <button onclick="copyColorCode('color-out-cmyk', 'CMYK Code')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <label class="block text-xs font-semibold text-neutral-400 mb-1">Manual HEX Input:</label>
+                        <input type="text" id="color-hex-input" value="#EF4444" oninput="updateColorFromHexInput(this.value)" placeholder="#000000" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs font-mono text-white focus:outline-none focus:border-red-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <span class="text-xs text-neutral-400 flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i> 100% Client-Side Color Conversion</span>
+                <button onclick="closeColorPickerModal()" class="px-4 py-2 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 5: Exact Age Calculator Modal -->
+    <div id="age-calculator-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="calendar" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Exact Age Calculator</h2>
+                        <p class="text-xs text-neutral-400">Calculate exact age down to years, months, days, weeks, and hours lived</p>
+                    </div>
+                </div>
+                <button onclick="closeAgeCalculatorModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800">
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Date of Birth (DOB):</label>
+                        <input type="date" id="age-dob-date" onchange="calculateExactAge()" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Age As Of Date:</label>
+                        <input type="date" id="age-target-date" onchange="calculateExactAge()" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-3">Primary Age Breakdown</h4>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl text-center">
+                            <span id="age-years" class="text-3xl font-black text-red-500">0</span>
+                            <span class="block text-xs font-semibold text-neutral-400 mt-1">Years</span>
+                        </div>
+                        <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl text-center">
+                            <span id="age-months" class="text-3xl font-black text-white">0</span>
+                            <span class="block text-xs font-semibold text-neutral-400 mt-1">Months</span>
+                        </div>
+                        <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl text-center">
+                            <span id="age-days" class="text-3xl font-black text-white">0</span>
+                            <span class="block text-xs font-semibold text-neutral-400 mt-1">Days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-3">Secondary Statistics</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="bg-neutral-900/50 border border-neutral-800 p-3 rounded-2xl text-center">
+                            <span class="text-[10px] text-neutral-500 uppercase block">Total Weeks</span>
+                            <span id="age-total-weeks" class="text-lg font-bold text-neutral-200">0</span>
+                        </div>
+                        <div class="bg-neutral-900/50 border border-neutral-800 p-3 rounded-2xl text-center">
+                            <span class="text-[10px] text-neutral-500 uppercase block">Total Days</span>
+                            <span id="age-total-days" class="text-lg font-bold text-neutral-200">0</span>
+                        </div>
+                        <div class="bg-neutral-900/50 border border-neutral-800 p-3 rounded-2xl text-center">
+                            <span class="text-[10px] text-neutral-500 uppercase block">Total Hours</span>
+                            <span id="age-total-hours" class="text-lg font-bold text-neutral-200">0</span>
+                        </div>
+                        <div class="bg-neutral-900/50 border border-neutral-800 p-3 rounded-2xl text-center">
+                            <span class="text-[10px] text-neutral-500 uppercase block">Next Birthday In</span>
+                            <span id="age-next-bday" class="text-lg font-bold text-red-400">0</span>
+                            <span class="text-[10px] text-neutral-500 block">Days</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <span class="text-xs text-neutral-400 flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i> 100% Client-Side Date Calculation</span>
+                <button onclick="closeAgeCalculatorModal()" class="px-4 py-2 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 6: Smart JSON Formatter & Validator Modal -->
+    <div id="json-formatter-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="file-json" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Smart JSON Formatter & Validator</h2>
+                        <p class="text-xs text-neutral-400">Beautify, validate syntax, or minify raw JSON string data</p>
+                    </div>
+                </div>
+                <button onclick="closeJsonFormatterModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-neutral-900/40 p-3.5 rounded-2xl border border-neutral-800">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-semibold text-neutral-300">Indentation Spacing:</span>
+                        <div class="inline-flex p-1 bg-neutral-950 border border-neutral-800 rounded-xl">
+                            <button id="json-indent-2-btn" onclick="setJsonIndent(2)" class="px-3 py-1 bg-red-600 text-white rounded-lg text-xs font-medium transition-colors">2 Spaces</button>
+                            <button id="json-indent-4-btn" onclick="setJsonIndent(4)" class="px-3 py-1 bg-neutral-900 text-neutral-400 hover:text-white rounded-lg text-xs font-medium transition-colors">4 Spaces</button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="formatJsonBeautify()" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all shadow-md shadow-red-600/10">Beautify / Format</button>
+                        <button onclick="formatJsonMinify()" class="bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-colors">Minify / Compact</button>
+                    </div>
+                </div>
+
+                <div id="json-status-box" class="hidden p-3.5 rounded-2xl border text-xs font-semibold flex items-center gap-2"></div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-semibold text-neutral-300">Paste Raw JSON Data Here:</label>
+                        <button onclick="clearJsonInput()" class="text-xs text-neutral-400 hover:text-red-400 transition-colors flex items-center gap-1">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                            <span>Clear Input</span>
+                        </button>
+                    </div>
+                    <textarea id="json-input-text" rows="10" oninput="validateAndFormatJson()" placeholder='{"name": "Kittutools", "version": 1.0, "features": ["Fast", "Secure"]}' class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl p-4 text-xs font-mono text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-red-500 transition-colors resize-y">{"name": "Kittutools", "version": 1.0, "features": ["Fast", "Secure"]}</textarea>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <span class="text-xs text-neutral-400 flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i> 100% Client-Side JSON Processing</span>
+                <div class="flex items-center gap-3">
+                    <button onclick="closeJsonFormatterModal()" class="px-4 py-2 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">Close</button>
+                    <button onclick="copyCleanJson()" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-6 py-2 rounded-xl transition-all shadow-lg shadow-red-600/20 flex items-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>Copy Clean JSON</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Tool 1: Ultimate Word & Character Counter Modal -->
     <div id="word-counter-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">

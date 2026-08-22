@@ -6,7 +6,7 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
         await page.goto('/');
     });
 
-    test('Homepage loads correctly with brand title and 24 tool cards', async ({ page }) => {
+    test('Homepage loads correctly with brand title and 26 tool cards', async ({ page }) => {
         await expect(page).toHaveTitle(/Kittutools/);
 
         // Brand logo verification
@@ -15,11 +15,11 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
 
         // Check cards count
         const cards = page.locator('.tool-card');
-        await expect(cards).toHaveCount(25);
+        await expect(cards).toHaveCount(26);
 
         // Check count indicator badge
         const countText = page.locator('#visible-count');
-        await expect(countText).toHaveText('25');
+        await expect(countText).toHaveText('26');
 
         // Screenshot homepage
         await page.screenshot({ path: 'screenshot-homepage.png', fullPage: true });
@@ -42,7 +42,7 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
 
         // Clear search
         await page.locator('#clear-search-btn').click();
-        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(25);
+        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(26);
     });
 
     test('Category filtering works as expected', async ({ page }) => {
@@ -57,9 +57,13 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
         await page.locator('button[data-category="pdf"]').click();
         await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(6);
 
+        // Click Utilities tab (has 6 tools)
+        await page.locator('button[data-category="utility"]').click();
+        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(6);
+
         // Click All Tools tab
         await page.locator('button[data-category="all"]').click();
-        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(25);
+        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(26);
     });
 
     test('JPG to PDF Modal workflow opens and operates properly', async ({ page }) => {
