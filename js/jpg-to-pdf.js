@@ -4,29 +4,7 @@ let uploadedImages = []; // Stores image objects: { id, name, size, type, dataUr
 
 document.addEventListener('DOMContentLoaded', () => {
     initDropzoneListeners();
-    initOptionsListeners();
 });
-
-/**
- * Initializes listeners for option controls (such as toggling orientation enable state)
- */
-function initOptionsListeners() {
-    const pageSizeSelect = document.getElementById('pdf-page-size');
-    const orientationSelect = document.getElementById('pdf-orientation');
-
-    if (pageSizeSelect && orientationSelect) {
-        const updateOrientationState = () => {
-            if (pageSizeSelect.value === 'auto') {
-                orientationSelect.disabled = true;
-            } else {
-                orientationSelect.disabled = false;
-            }
-        };
-
-        pageSizeSelect.addEventListener('change', updateOrientationState);
-        updateOrientationState();
-    }
-}
 
 /**
  * Initializes Drag and Drop & File Selector listeners for the converter modal
@@ -247,46 +225,9 @@ function clearAllImages() {
 }
 
 /**
- * Helper to compress image dataUrl based on selected quality setting
- */
-function compressImage(imgObj, qualitySetting) {
-    return new Promise((resolve) => {
-        if (qualitySetting === 'high') {
-            let format = 'JPEG';
-            if (imgObj.type.includes('png')) format = 'PNG';
-            if (imgObj.type.includes('webp')) format = 'WEBP';
-            resolve({ dataUrl: imgObj.dataUrl, format: format });
-            return;
-        }
-
-        const qualityFactor = qualitySetting === 'low' ? 0.4 : 0.7;
-        const img = new Image();
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = imgObj.width;
-            canvas.height = imgObj.height;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#FFFFFF';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0);
-
-            const compressedDataUrl = canvas.toDataURL('image/jpeg', qualityFactor);
-            resolve({ dataUrl: compressedDataUrl, format: 'JPEG' });
-        };
-        img.onerror = () => {
-            let format = 'JPEG';
-            if (imgObj.type.includes('png')) format = 'PNG';
-            if (imgObj.type.includes('webp')) format = 'WEBP';
-            resolve({ dataUrl: imgObj.dataUrl, format: format });
-        };
-        img.src = imgObj.dataUrl;
-    });
-}
-
-/**
  * Generates and triggers instant PDF download using jsPDF client-side
  */
-async function generateAndDownloadPdf() {
+function generateAndDownloadPdf() {
     if (uploadedImages.length === 0) return;
 
     const convertBtn = document.getElementById('convert-pdf-btn');
@@ -299,61 +240,52 @@ async function generateAndDownloadPdf() {
         if (window.lucide) lucide.createIcons();
     }
 
-    try {
-        const { jsPDF } = window.jspdf;
-        const pageSizeSetting = document.getElementById('pdf-page-size')?.value || 'a4';
-        const orientationSetting = document.getElementById('pdf-orientation')?.value || 'portrait';
-        const qualitySetting = document.getElementById('pdf-quality')?.value || 'high';
-        const marginSetting = document.getElementById('pdf-margin')?.value || 'none';
-        let customFilename = document.getElementById('pdf-filename')?.value.trim() || 'Kittutools-Converted';
+    setTimeout(() => {
+        try {
+            const { jsPDF } = window.jspdf;
+            const orientationSetting = document.getElementById('pdf-orientation')?.value || 'portrait';
+            const marginSetting = document.getElementById('pdf-margin')?.value || 'small';
+            let customFilename = document.getElementById('pdf-filename')?.value.trim() || 'Kittutools-Converted';
 
-        if (!customFilename.toLowerCase().endsWith('.pdf')) {
-            customFilename += '.pdf';
-        }
-
-        // Margin in mm (0.5 inch = 12.7 mm)
-        const margin = marginSetting === 'small' ? 12.7 : 0;
-
-        let doc = null;
-
-        for (let i = 0; i < uploadedImages.length; i++) {
-            const imgObj = uploadedImages[i];
-            const { dataUrl, format } = await compressImage(imgObj, qualitySetting);
-
-            let pageWidth, pageHeight;
-            let pageFormat, pageOrientation;
-
-            if (pageSizeSetting === 'auto') {
-                const imgWidthMM = imgObj.width * 0.264583;
-                const imgHeightMM = imgObj.height * 0.264583;
-                pageWidth = imgWidthMM + (margin * 2);
-                pageHeight = imgHeightMM + (margin * 2);
-                pageFormat = [pageWidth, pageHeight];
-                pageOrientation = pageWidth >= pageHeight ? 'landscape' : 'portrait';
-            } else {
-                pageFormat = pageSizeSetting; // 'a4' or 'letter'
-                pageOrientation = orientationSetting; // 'portrait' or 'landscape'
+            if (!customFilename.toLowerCase().endsWith('.pdf')) {
+                customFilename += '.pdf';
             }
 
-            if (i === 0) {
-                doc = new jsPDF({
-                    orientation: pageOrientation,
-                    unit: 'mm',
-                    format: pageFormat
-                });
-            } else {
-                doc.addPage(pageFormat, pageOrientation);
-            }
+            // Define margin in mm
+            let margin = 10;
+            if (marginSetting === 'none') margin = 0;
+            if (marginSetting === 'large') margin = 20;
 
-            pageWidth = doc.internal.pageSize.getWidth();
-            pageHeight = doc.internal.pageSize.getHeight();
+            let doc = null;
 
-            const printableWidth = pageWidth - (margin * 2);
-            const printableHeight = pageHeight - (margin * 2);
+            uploadedImages.forEach((imgObj, i) => {
+                // Determine orientation for current page
+                let isLandscape = false;
+                if (orientationSetting === 'landscape') {
+                    isLandscape = true;
+                } else if (orientationSetting === 'auto') {
+                    isLandscape = imgObj.width > imgObj.height;
+                }
 
-            if (pageSizeSetting === 'auto') {
-                doc.addImage(dataUrl, format, margin, margin, printableWidth, printableHeight);
-            } else {
+                const pageOrientation = isLandscape ? 'landscape' : 'portrait';
+
+                if (i === 0) {
+                    doc = new jsPDF({
+                        orientation: pageOrientation,
+                        unit: 'mm',
+                        format: 'a4'
+                    });
+                } else {
+                    doc.addPage('a4', pageOrientation);
+                }
+
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const pageHeight = doc.internal.pageSize.getHeight();
+
+                const printableWidth = pageWidth - (margin * 2);
+                const printableHeight = pageHeight - (margin * 2);
+
+                // Calculate aspect ratio fit inside printable area
                 const imgRatio = imgObj.width / imgObj.height;
                 const printRatio = printableWidth / printableHeight;
 
@@ -366,33 +298,39 @@ async function generateAndDownloadPdf() {
                     drawWidth = printableHeight * imgRatio;
                 }
 
+                // Center image on page
                 const xPos = margin + (printableWidth - drawWidth) / 2;
                 const yPos = margin + (printableHeight - drawHeight) / 2;
 
-                doc.addImage(dataUrl, format, xPos, yPos, drawWidth, drawHeight);
-            }
-        }
+                // Format detection for jsPDF
+                let format = 'JPEG';
+                if (imgObj.type.includes('png')) format = 'PNG';
+                if (imgObj.type.includes('webp')) format = 'WEBP';
 
-        if (doc) {
-            doc.save(customFilename);
+                doc.addImage(imgObj.dataUrl, format, xPos, yPos, drawWidth, drawHeight);
+            });
+
+            if (doc) {
+                doc.save(customFilename);
+                if (typeof showToast === 'function') {
+                    showToast(`Successfully downloaded ${customFilename}!`, 'success');
+                }
+            }
+
+        } catch (error) {
+            console.error('Error generating PDF:', error);
             if (typeof showToast === 'function') {
-                showToast(`Successfully downloaded ${customFilename}!`, 'success');
+                showToast('Failed to compile PDF. Please try again.', 'info');
+            }
+        } finally {
+            if (convertBtn) {
+                convertBtn.disabled = false;
+                convertBtn.innerHTML = `
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Convert & Download PDF</span>
+                `;
+                if (window.lucide) lucide.createIcons();
             }
         }
-
-    } catch (error) {
-        console.error('Error generating PDF:', error);
-        if (typeof showToast === 'function') {
-            showToast('Failed to compile PDF. Please try again.', 'info');
-        }
-    } finally {
-        if (convertBtn) {
-            convertBtn.disabled = false;
-            convertBtn.innerHTML = `
-                <i data-lucide="download" class="w-4 h-4"></i>
-                <span>Convert & Download PDF</span>
-            `;
-            if (window.lucide) lucide.createIcons();
-        }
-    }
+    }, 150);
 }
