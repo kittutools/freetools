@@ -226,7 +226,7 @@
 
             <!-- Active Filter Status -->
             <div class="text-sm text-neutral-400 font-medium">
-                Showing <span id="visible-count" class="text-white font-bold">21</span> tools
+                Showing <span id="visible-count" class="text-white font-bold">24</span> tools
             </div>
         </div>
 
@@ -383,10 +383,67 @@
                         <i data-lucide="image" class="w-5 h-5"></i>
                     </div>
                     <h2 class="text-xl font-bold text-white tracking-tight">Image Tools</h2>
-                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">5 Tools</span>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">8 Tools</span>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+                    <!-- Card 21: Advanced Image Resize Tool -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Advanced Image Resize Tool Resizer Width Height Pixels Percentage Bulk Aspect Ratio"
+                         data-category="image"
+                         onclick="openImageResizeModal()">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i data-lucide="scaling" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Advanced Image Resize Tool</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Batch resize images by pixels or percentage slider with aspect ratio lock and ZIP export.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 22: Premium AI Background Remover -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Premium AI Background Remover Cutout Transparent PNG Solid Color Replace"
+                         data-category="image"
+                         onclick="openBgRemoverModal()">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i data-lucide="wand-2" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">AI Background Remover</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Instant client-side background removal with transparent PNG or custom solid color fill.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 23: Pro-Level Bulk Image Converter -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Pro Level Bulk Image Converter Batch PNG JPG WebP BMP Quality Compression ZIP"
+                         data-category="image"
+                         onclick="openBulkConverterModal()">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Pro Bulk Image Converter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Convert batch images between JPG, PNG, WebP, and BMP with adjustable quality compression slider.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
 
                     <!-- Card 6: PNG to JPG -->
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
@@ -1092,6 +1149,9 @@
     <script src="js/compress-pdf.js"></script>
     <script src="js/merge-pdf.js"></script>
     <script src="js/split-pdf.js"></script>
+    <script src="js/image-resize.js"></script>
+    <script src="js/bg-remover.js"></script>
+    <script src="js/bulk-converter.js"></script>
 
     <!-- Pro-Level Image Compressor Modal -->
     <div id="image-compressor-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
@@ -1693,6 +1753,362 @@
 
         </div>
     </div>
+    <!-- Tool 1: Advanced Image Resize Modal -->
+    <div id="image-resize-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-5xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="scaling" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Advanced Image Resize Tool</h2>
+                        <p class="text-xs text-neutral-400">Batch resize images by pixels or percentage slider with aspect ratio lock</p>
+                    </div>
+                </div>
+                <button onclick="closeImageResizeModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Drag & Drop Uploader -->
+                <div id="image-resize-dropzone" class="border-2 border-dashed border-neutral-800 hover:border-red-500/60 bg-neutral-900/30 hover:bg-neutral-900/60 rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 group">
+                    <input type="file" id="image-resize-file-input" accept="image/jpeg, image/jpg, image/png, image/webp, image/gif, image/bmp" multiple class="hidden">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-neutral-900 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors mb-2">
+                        <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-sm font-semibold text-white mb-1">Drag & Drop images here, or <span class="text-red-500 underline group-hover:text-red-400">Browse Files</span></h3>
+                    <p class="text-[11px] text-neutral-500">Supports PNG, JPG, WebP, GIF, BMP • Multi-image batch support</p>
+                </div>
+
+                <!-- Customization Options Bar -->
+                <div class="bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800 space-y-4">
+
+                    <!-- Top row: Unit selector & Aspect ratio lock -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-3 border-b border-neutral-800/80">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-semibold text-neutral-300">Resize Unit:</span>
+                            <div class="inline-flex p-1 bg-neutral-950 border border-neutral-800 rounded-xl">
+                                <button id="resize-unit-pixels-btn" onclick="setResizeUnit('pixels')" class="px-3 py-1 bg-red-600 text-white rounded-lg text-xs font-medium transition-colors">
+                                    By Pixels
+                                </button>
+                                <button id="resize-unit-percent-btn" onclick="setResizeUnit('percentage')" class="px-3 py-1 bg-neutral-900 text-neutral-400 hover:text-white rounded-lg text-xs font-medium transition-colors">
+                                    By Percentage
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Aspect Ratio Lock Toggle -->
+                        <div class="flex items-center gap-2">
+                            <label class="flex items-center gap-2 text-xs font-semibold text-neutral-300 cursor-pointer select-none">
+                                <input type="checkbox" id="resize-lock-aspect" checked class="w-4 h-4 accent-red-600 rounded cursor-pointer">
+                                <span>Lock Aspect Ratio</span>
+                                <i data-lucide="lock" class="w-3.5 h-3.5 text-red-500 inline"></i>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Mode 1: By Pixels Controls -->
+                    <div id="resize-pixels-controls" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1">Target Width (px)</label>
+                            <input type="number" id="resize-width-input" placeholder="e.g. 1920" min="1" max="10000" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1">Target Height (px)</label>
+                            <input type="number" id="resize-height-input" placeholder="e.g. 1080" min="1" max="10000" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500 transition-colors">
+                        </div>
+                    </div>
+
+                    <!-- Mode 2: By Percentage Controls -->
+                    <div id="resize-percent-controls" class="hidden space-y-2">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-neutral-300 font-semibold">Scale Percentage:</span>
+                            <span id="resize-percent-label" class="font-bold text-red-500 text-sm">100%</span>
+                        </div>
+                        <input type="range" id="resize-percent-slider" min="10" max="200" value="100" class="w-full h-2 bg-neutral-950 rounded-lg appearance-none cursor-pointer accent-red-500">
+                        <div class="flex justify-between text-[10px] text-neutral-500 px-1">
+                            <span>10% (Smaller)</span>
+                            <span>100% (Original)</span>
+                            <span>200% (Enlarge)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Uploaded Images Grid & Original vs New Dimensions -->
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <h4 class="text-sm font-bold text-white">Uploaded Images List</h4>
+                            <span id="resize-count-badge" class="text-xs font-semibold px-2 py-0.5 rounded-md bg-neutral-900 text-neutral-400 border border-neutral-800">0 images</span>
+                        </div>
+                        <button onclick="clearAllResizeImages()" class="text-xs text-neutral-400 hover:text-red-400 transition-colors">Clear All</button>
+                    </div>
+
+                    <!-- Empty state -->
+                    <div id="resize-empty-state" class="text-center py-10 border border-neutral-900 rounded-2xl bg-neutral-950/50">
+                        <p class="text-xs text-neutral-500">No images added. Upload files above to view thumbnails and dimensions.</p>
+                    </div>
+
+                    <!-- Thumbnails grid -->
+                    <div id="resize-thumbnails-grid" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-80 overflow-y-auto pr-1"></div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Local Canvas Resizing</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeImageResizeModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Cancel
+                    </button>
+                    <button id="download-resized-zip-btn" onclick="downloadAllResizedZip()" disabled class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="archive" class="w-4 h-4"></i>
+                        <span>Download Resized Images (ZIP)</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tool 2: Premium AI-Style Background Remover Modal -->
+    <div id="bg-remover-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-5xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="wand-2" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">AI-Style Background Remover</h2>
+                        <p class="text-xs text-neutral-400">Remove image backgrounds 100% locally with transparent PNG or solid color options</p>
+                    </div>
+                </div>
+                <button onclick="closeBgRemoverModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Upload Zone -->
+                <div id="bg-remover-dropzone" class="border-2 border-dashed border-neutral-800 hover:border-red-500/60 bg-neutral-900/30 hover:bg-neutral-900/60 rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 group">
+                    <input type="file" id="bg-remover-file-input" accept="image/jpeg, image/jpg, image/png, image/webp" class="hidden">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-neutral-900 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors mb-2">
+                        <i data-lucide="image-plus" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-sm font-semibold text-white mb-1">Drag & Drop image to remove background, or <span class="text-red-500 underline group-hover:text-red-400">Browse File</span></h3>
+                    <p class="text-[11px] text-neutral-500">Supports JPG, PNG, WebP • Zero server uploads</p>
+                </div>
+
+                <!-- Customization Options Bar -->
+                <div class="bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800 space-y-3">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-semibold text-neutral-300">Background Mode:</span>
+                            <div class="inline-flex p-1 bg-neutral-950 border border-neutral-800 rounded-xl">
+                                <button id="bg-mode-transparent-btn" onclick="setBgMode('transparent')" class="px-3 py-1 bg-red-600 text-white rounded-lg text-xs font-medium transition-colors">
+                                    Transparent PNG
+                                </button>
+                                <button id="bg-mode-solid-btn" onclick="setBgMode('solid')" class="px-3 py-1 bg-neutral-900 text-neutral-400 hover:text-white rounded-lg text-xs font-medium transition-colors">
+                                    Solid Color Background
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Solid Color Picker & Presets -->
+                        <div id="bg-color-options" class="hidden flex items-center gap-2">
+                            <span class="text-xs text-neutral-400">Preset Colors:</span>
+                            <button onclick="setBgSolidColor('#FFFFFF')" class="w-6 h-6 rounded-full bg-white border border-neutral-600 hover:scale-110 transition-transform" title="White"></button>
+                            <button onclick="setBgSolidColor('#000000')" class="w-6 h-6 rounded-full bg-black border border-neutral-700 hover:scale-110 transition-transform" title="Black"></button>
+                            <button onclick="setBgSolidColor('#3B82F6')" class="w-6 h-6 rounded-full bg-blue-500 hover:scale-110 transition-transform" title="Blue"></button>
+                            <button onclick="setBgSolidColor('#EF4444')" class="w-6 h-6 rounded-full bg-red-500 hover:scale-110 transition-transform" title="Red"></button>
+                            <button onclick="setBgSolidColor('#10B981')" class="w-6 h-6 rounded-full bg-emerald-500 hover:scale-110 transition-transform" title="Green"></button>
+
+                            <!-- Custom Color Picker Input -->
+                            <div class="flex items-center gap-1.5 ml-2">
+                                <input type="color" id="bg-custom-color-picker" value="#FFFFFF" onchange="setBgSolidColor(this.value)" class="w-7 h-7 bg-transparent cursor-pointer rounded-lg border-0">
+                                <span class="text-xs font-mono text-neutral-300" id="bg-color-hex-label">#FFFFFF</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sleek Red Loading Spinner & Progress Bar -->
+                <div id="bg-remover-loading" class="hidden space-y-3 bg-neutral-900/60 p-6 rounded-2xl border border-neutral-800 text-center">
+                    <div class="flex items-center justify-center gap-3">
+                        <i data-lucide="loader-2" class="w-6 h-6 animate-spin text-red-500"></i>
+                        <span id="bg-remover-status-text" class="text-sm font-semibold text-white">Removing image background...</span>
+                    </div>
+                    <div class="w-full bg-neutral-950 rounded-full h-2.5 overflow-hidden border border-neutral-800 max-w-md mx-auto">
+                        <div id="bg-remover-progress-bar" class="bg-red-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Side-by-Side Comparison Preview Grid -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">Original vs Cutout Output Preview</h4>
+
+                    <div id="bg-remover-empty-state" class="text-center py-12 border border-neutral-900 rounded-2xl bg-neutral-950/50">
+                        <p class="text-xs text-neutral-500">No image loaded. Upload an image above to generate side-by-side cutout preview.</p>
+                    </div>
+
+                    <div id="bg-remover-preview-container" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Original Image Box -->
+                        <div class="bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800 text-center">
+                            <span class="text-xs font-semibold text-neutral-400 block mb-2">Original Image</span>
+                            <div class="flex items-center justify-center min-h-[220px] max-h-[300px] overflow-hidden bg-neutral-950 rounded-xl p-2 border border-neutral-800">
+                                <img id="bg-orig-preview" src="" alt="Original" class="max-h-[260px] object-contain rounded-lg">
+                            </div>
+                        </div>
+
+                        <!-- Processed Cutout Box -->
+                        <div class="bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800 text-center">
+                            <span class="text-xs font-semibold text-neutral-400 block mb-2">Cutout Result</span>
+                            <div id="bg-output-wrapper" class="flex items-center justify-center min-h-[220px] max-h-[300px] overflow-hidden rounded-xl p-2 border border-neutral-800 transition-colors" style="background-image: repeating-conic-gradient(#1f1f1f 0% 25%, #000000 0% 50%); background-size: 16px 16px;">
+                                <img id="bg-output-preview" src="" alt="Cutout Result" class="max-h-[260px] object-contain rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Client-Side AI Background Removal</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeBgRemoverModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Cancel
+                    </button>
+                    <button id="download-cutout-btn" onclick="downloadCutoutImage()" disabled class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Download Cutout</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tool 3: Pro-Level Bulk Image Converter Modal -->
+    <div id="bulk-converter-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-5xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Pro Bulk Image Converter</h2>
+                        <p class="text-xs text-neutral-400">Convert multiple images into JPG, PNG, WebP, or BMP with custom compression quality</p>
+                    </div>
+                </div>
+                <button onclick="closeBulkConverterModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Batch Uploader -->
+                <div id="bulk-converter-dropzone" class="border-2 border-dashed border-neutral-800 hover:border-red-500/60 bg-neutral-900/30 hover:bg-neutral-900/60 rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 group">
+                    <input type="file" id="bulk-converter-file-input" accept="image/jpeg, image/jpg, image/png, image/webp, image/bmp, image/gif" multiple class="hidden">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-neutral-900 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors mb-2">
+                        <i data-lucide="files" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-sm font-semibold text-white mb-1">Drag & Drop images here, or <span class="text-red-500 underline group-hover:text-red-400">Browse Files</span></h3>
+                    <p class="text-[11px] text-neutral-500">Supports PNG, JPG, WebP, BMP, GIF • Instant batch conversion</p>
+                </div>
+
+                <!-- Customization Options Bar -->
+                <div class="bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Output Format Master Selector -->
+                        <div>
+                            <label class="block text-xs font-semibold text-neutral-300 mb-1" title="Select target image format">
+                                Target Output Format: <i data-lucide="help-circle" class="w-3 h-3 inline text-neutral-500"></i>
+                            </label>
+                            <select id="bulk-output-format" onchange="updateBulkConverterSettings()" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-red-500 transition-colors">
+                                <option value="image/jpeg">JPG (.jpg)</option>
+                                <option value="image/png">PNG (.png)</option>
+                                <option value="image/webp" selected>WebP (.webp)</option>
+                                <option value="image/bmp">BMP (.bmp)</option>
+                            </select>
+                        </div>
+
+                        <!-- Quality Compression Slider -->
+                        <div id="bulk-quality-wrapper">
+                            <div class="flex items-center justify-between text-xs mb-1">
+                                <span class="text-neutral-300 font-semibold">Quality Compression:</span>
+                                <span id="bulk-quality-val" class="font-bold text-red-500">85%</span>
+                            </div>
+                            <input type="range" id="bulk-quality-slider" min="5" max="100" value="85" oninput="updateBulkQualityValue(this.value)" class="w-full h-2 bg-neutral-950 rounded-lg appearance-none cursor-pointer accent-red-500">
+                            <p id="bulk-quality-hint" class="text-[10px] text-neutral-500 mt-1">Adjusts compression quality for JPG and WebP formats.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processed Files List & Individual Downloads -->
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <h4 class="text-sm font-bold text-white">Converted Files List</h4>
+                            <span id="bulk-count-badge" class="text-xs font-semibold px-2 py-0.5 rounded-md bg-neutral-900 text-neutral-400 border border-neutral-800">0 files</span>
+                        </div>
+                        <button onclick="clearAllBulkItems()" class="text-xs text-neutral-400 hover:text-red-400 transition-colors">Clear All</button>
+                    </div>
+
+                    <!-- Empty state -->
+                    <div id="bulk-empty-state" class="text-center py-10 border border-neutral-900 rounded-2xl bg-neutral-950/50">
+                        <p class="text-xs text-neutral-500">No images added. Upload files above to convert and download individually or in batch.</p>
+                    </div>
+
+                    <!-- Processed files list -->
+                    <div id="bulk-items-list" class="hidden space-y-3 max-h-80 overflow-y-auto pr-1"></div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Client-Side Format Conversion</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeBulkConverterModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Cancel
+                    </button>
+                    <button id="download-converted-zip-btn" onclick="downloadAllConvertedZip()" disabled class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="archive" class="w-4 h-4"></i>
+                        <span>Convert & Download All as ZIP</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <script>
         // Initialize Lucide Icons
         document.addEventListener("DOMContentLoaded", function() {
