@@ -226,7 +226,7 @@
 
             <!-- Active Filter Status -->
             <div class="text-sm text-neutral-400 font-medium">
-                Showing <span id="visible-count" class="text-white font-bold">24</span> tools
+                Showing <span id="visible-count" class="text-white font-bold">25</span> tools
             </div>
         </div>
 
@@ -550,45 +550,83 @@
                         <i data-lucide="type" class="w-5 h-5"></i>
                     </div>
                     <h2 class="text-xl font-bold text-white tracking-tight">Text & SEO Tools</h2>
-                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">5 Tools</span>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-neutral-900 text-neutral-400 border border-neutral-800">6 Tools</span>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
                     <!-- Card 11: Word Counter -->
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
-                         data-name="Word & Character Counter Letter Count Paragraph"
+                         data-name="Ultimate Word & Character Counter Letter Count Paragraph Reading Time Speaking Time"
                          data-category="text"
-                         onclick="triggerUpcomingTool('Word & Character Counter')">
+                         onclick="openWordCounterModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <i data-lucide="text-cursor" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
-                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Word & Character Counter</h3>
-                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Real-time word, character, sentence, paragraph, and reading time counter.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Ultimate Word & Character Counter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Real-time word, character, sentence, paragraph, reading speed, and speaking time counter.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
 
                     <!-- Card 12: Case Converter -->
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
-                         data-name="Case Converter Uppercase Lowercase Titlecase"
+                         data-name="Pro Case Converter Uppercase Lowercase Titlecase Sentence Case iNVERSE cASE Slugify"
                          data-category="text"
-                         onclick="triggerUpcomingTool('Case Converter')">
+                         onclick="openCaseConverterModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <i data-lucide="case-sensitive" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
-                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Case Converter</h3>
-                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Transform text between UPPERCASE, lowercase, Title Case, camelCase, and snake_case.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Pro Case Converter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Convert text cases instantly into UPPERCASE, lowercase, Title Case, Sentence case, iNVERSE, or Slugify.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 15: Lorem Ipsum Generator -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Advanced Lorem Ipsum Generator Dummy Text Placeholder HTML Tags"
+                         data-category="text"
+                         onclick="openLoremIpsumModal()">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i data-lucide="align-left" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Advanced Lorem Ipsum Generator</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Generate customized placeholder text (Paragraphs, Words, Sentences, Lists) with optional HTML tags.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 24: Smart Remove Duplicate Lines Tool -->
+                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
+                         data-name="Smart Remove Duplicate Lines Tool Clean List Unique Lines Sorting Case Sensitive Whitespace"
+                         data-category="text"
+                         onclick="openRemoveDuplicatesModal()">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i data-lucide="filter" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Smart Remove Duplicate Lines</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Sort lists or data arrays, eliminate duplicate lines with case sensitivity, trimming, and export to TXT.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
@@ -625,25 +663,6 @@
                         </div>
                         <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Meta Tag Generator</h3>
                         <p class="text-neutral-400 text-xs leading-relaxed mb-4">Create optimized HTML meta tags and Open Graph tags for search engine visibility.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                        </div>
-                    </div>
-
-                    <!-- Card 15: Lorem Ipsum Generator -->
-                    <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
-                         data-name="Lorem Ipsum Generator Dummy Text Placeholder"
-                         data-category="text"
-                         onclick="triggerUpcomingTool('Lorem Ipsum Generator')">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
-                                <i data-lucide="align-left" class="w-6 h-6"></i>
-                            </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
-                        </div>
-                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Lorem Ipsum Generator</h3>
-                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Generate customized dummy text placeholder paragraphs and words for design mockups.</p>
                         <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
                             <span>Open Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
@@ -1152,6 +1171,427 @@
     <script src="js/image-resize.js"></script>
     <script src="js/bg-remover.js"></script>
     <script src="js/bulk-converter.js"></script>
+    <script src="js/word-counter.js"></script>
+    <script src="js/case-converter.js"></script>
+    <script src="js/lorem-ipsum.js"></script>
+    <script src="js/remove-duplicates.js"></script>
+
+    <!-- Tool 1: Ultimate Word & Character Counter Modal -->
+    <div id="word-counter-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="text-cursor" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Ultimate Word & Character Counter</h2>
+                        <p class="text-xs text-neutral-400">Real-time stats dashboard for words, characters, reading speed, and speaking time</p>
+                    </div>
+                </div>
+                <button onclick="closeWordCounterModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Real-Time Statistics Dashboard Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="bg-neutral-900/60 border border-neutral-800 p-3.5 rounded-2xl text-center">
+                        <span class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block mb-1">Total Words</span>
+                        <span id="wc-words" class="text-2xl font-black text-white">0</span>
+                    </div>
+
+                    <div class="bg-neutral-900/60 border border-neutral-800 p-3.5 rounded-2xl text-center">
+                        <span class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block mb-1">Total Characters</span>
+                        <span id="wc-chars" class="text-2xl font-black text-red-500">0</span>
+                        <span class="text-[10px] text-neutral-500 block">With spaces</span>
+                    </div>
+
+                    <div class="bg-neutral-900/60 border border-neutral-800 p-3.5 rounded-2xl text-center">
+                        <span class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block mb-1">Chars (No Spaces)</span>
+                        <span id="wc-chars-nospace" class="text-2xl font-black text-white">0</span>
+                    </div>
+
+                    <div class="bg-neutral-900/60 border border-neutral-800 p-3.5 rounded-2xl text-center">
+                        <span class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block mb-1">Paragraphs / Sentences</span>
+                        <div class="text-lg font-extrabold text-white">
+                            <span id="wc-paragraphs">0</span> <span class="text-xs font-normal text-neutral-500">P</span> / <span id="wc-sentences">0</span> <span class="text-xs font-normal text-neutral-500">S</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Reading / Speaking Speed Banner -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800/80">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-neutral-300 block">Est. Reading Time</span>
+                            <span id="wc-reading-time" class="text-sm font-bold text-white">0 sec</span>
+                            <span class="text-[10px] text-neutral-500 block">(Avg. 200 wpm)</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500">
+                            <i data-lucide="mic" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-neutral-300 block">Est. Speaking Time</span>
+                            <span id="wc-speaking-time" class="text-sm font-bold text-white">0 sec</span>
+                            <span class="text-[10px] text-neutral-500 block">(Avg. 130 wpm)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clean Text Area Input -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-semibold text-neutral-300">Paste or type content here:</label>
+                        <button onclick="clearWordCounterText()" class="text-xs text-neutral-400 hover:text-red-400 transition-colors flex items-center gap-1">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                            <span>Clear Text</span>
+                        </button>
+                    </div>
+                    <textarea
+                        id="wc-input-text"
+                        rows="8"
+                        oninput="updateWordCounterStats()"
+                        placeholder="Type or paste your content here to calculate real-time word count, character count, and reading speed statistics..."
+                        class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl p-4 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-red-500 transition-colors resize-y"
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Private Client-Side Text Analysis</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeWordCounterModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Close
+                    </button>
+                    <button onclick="copyWordCounterText()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>Copy to Clipboard</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tool 2: Pro Case Converter Modal -->
+    <div id="case-converter-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="case-sensitive" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Pro Case Converter</h2>
+                        <p class="text-xs text-neutral-400">Instantly convert text case into UPPERCASE, lowercase, Title Case, Sentence case, or URL Slug</p>
+                    </div>
+                </div>
+                <button onclick="closeCaseConverterModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Text Input Box -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-semibold text-neutral-300">Enter text to transform:</label>
+                        <button onclick="clearCaseConverterText()" class="text-xs text-neutral-400 hover:text-red-400 transition-colors flex items-center gap-1">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                            <span>Clear Text</span>
+                        </button>
+                    </div>
+                    <textarea
+                        id="cc-input-text"
+                        rows="7"
+                        placeholder="Type or paste text here, then select a case conversion button below..."
+                        class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl p-4 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-red-500 transition-colors resize-y"
+                    ></textarea>
+                </div>
+
+                <!-- Red Conversion Action Buttons Grid -->
+                <div>
+                    <label class="block text-xs font-semibold text-neutral-300 mb-2.5">Instant Conversion Actions:</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <button onclick="convertCase('uppercase')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs py-3 px-4 rounded-xl transition-all shadow-md shadow-red-600/10 active:scale-95 flex items-center justify-center gap-2">
+                            <span>UPPERCASE</span>
+                        </button>
+                        <button onclick="convertCase('lowercase')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs py-3 px-4 rounded-xl transition-all shadow-md shadow-red-600/10 active:scale-95 flex items-center justify-center gap-2">
+                            <span>lowercase</span>
+                        </button>
+                        <button onclick="convertCase('titlecase')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs py-3 px-4 rounded-xl transition-all shadow-md shadow-red-600/10 active:scale-95 flex items-center justify-center gap-2">
+                            <span>Title Case</span>
+                        </button>
+                        <button onclick="convertCase('sentencecase')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs py-3 px-4 rounded-xl transition-all shadow-md shadow-red-600/10 active:scale-95 flex items-center justify-center gap-2">
+                            <span>Sentence case</span>
+                        </button>
+                        <button onclick="convertCase('inversecase')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs py-3 px-4 rounded-xl transition-all shadow-md shadow-red-600/10 active:scale-95 flex items-center justify-center gap-2">
+                            <span>iNVERSE cASE</span>
+                        </button>
+                        <button onclick="convertCase('slugify')" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-xs py-3 px-4 rounded-xl transition-all shadow-md shadow-red-600/10 active:scale-95 flex items-center justify-center gap-2">
+                            <i data-lucide="link" class="w-3.5 h-3.5"></i>
+                            <span>Slugify URL</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Local Case Transformation</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeCaseConverterModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Close
+                    </button>
+                    <button onclick="copyCaseConverterText()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>Copy Converted Text</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tool 3: Advanced Lorem Ipsum / Dummy Text Generator Modal -->
+    <div id="lorem-ipsum-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="align-left" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Advanced Lorem Ipsum Generator</h2>
+                        <p class="text-xs text-neutral-400">Generate placeholder dummy text for web development, mockups, and layout design</p>
+                    </div>
+                </div>
+                <button onclick="closeLoremIpsumModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Customization Options Bar -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800/80 items-end">
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Quantity</label>
+                        <input
+                            type="number"
+                            id="lorem-quantity"
+                            value="3"
+                            min="1"
+                            max="100"
+                            oninput="generateLoremIpsumText()"
+                            class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500 transition-colors"
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Type Selector</label>
+                        <select id="lorem-type" onchange="generateLoremIpsumText()" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500 transition-colors">
+                            <option value="paragraphs" selected>Paragraphs</option>
+                            <option value="words">Words</option>
+                            <option value="sentences">Sentences</option>
+                            <option value="lists">Lists (Bulleted)</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center gap-2 pb-2">
+                        <input
+                            type="checkbox"
+                            id="lorem-html-tags"
+                            onchange="generateLoremIpsumText()"
+                            class="w-4 h-4 accent-red-600 rounded cursor-pointer"
+                        >
+                        <label for="lorem-html-tags" class="text-xs font-semibold text-neutral-300 cursor-pointer select-none">
+                            Include HTML Tags (&lt;p&gt; / &lt;li&gt;)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Clean Output Preview Window -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-semibold text-neutral-300">Generated Text Preview:</label>
+                        <button onclick="generateLoremIpsumText()" class="text-xs text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 font-semibold">
+                            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                            <span>Regenerate Text</span>
+                        </button>
+                    </div>
+                    <textarea
+                        id="lorem-output"
+                        rows="8"
+                        readonly
+                        class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl p-4 text-sm text-neutral-200 focus:outline-none focus:border-red-500 font-mono transition-colors resize-y"
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Client-Side Dummy Text Generator</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeLoremIpsumModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Close
+                    </button>
+                    <button onclick="copyLoremIpsumText()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>Copy to Clipboard</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tool 4: Smart Remove Duplicate Lines Tool Modal -->
+    <div id="remove-duplicates-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="filter" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Smart Remove Duplicate Lines</h2>
+                        <p class="text-xs text-neutral-400">Sort lists or data arrays, eliminate duplicate lines with case sensitivity and trimming</p>
+                    </div>
+                </div>
+                <button onclick="closeRemoveDuplicatesModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Filter Controls & Sorting Options Bar -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800/80 items-center">
+                    <div class="flex items-center gap-2">
+                        <input
+                            type="checkbox"
+                            id="rd-case-sensitive"
+                            onchange="processDuplicateLines()"
+                            class="w-4 h-4 accent-red-600 rounded cursor-pointer"
+                        >
+                        <label for="rd-case-sensitive" class="text-xs font-semibold text-neutral-300 cursor-pointer select-none">
+                            Case Sensitive Filter
+                        </label>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <input
+                            type="checkbox"
+                            id="rd-trim-whitespace"
+                            checked
+                            onchange="processDuplicateLines()"
+                            class="w-4 h-4 accent-red-600 rounded cursor-pointer"
+                        >
+                        <label for="rd-trim-whitespace" class="text-xs font-semibold text-neutral-300 cursor-pointer select-none">
+                            Trim Whitespaces
+                        </label>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Sorting Option</label>
+                        <select id="rd-sort-order" onchange="processDuplicateLines()" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-red-500 transition-colors">
+                            <option value="original" selected>Keep Original Order</option>
+                            <option value="a-z">Alphabetical (A - Z)</option>
+                            <option value="z-a">Reverse Alphabetical (Z - A)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Dynamic Notification Bar -->
+                <div id="rd-notification-badge" class="hidden bg-neutral-900 border border-red-500/30 p-3 rounded-xl flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-2 text-red-400 font-semibold">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        <span><strong id="rd-removed-count">0</strong> duplicate lines found and ready to be removed.</span>
+                    </div>
+                    <button onclick="applyRemoveDuplicates()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-3 py-1 rounded-lg text-xs transition-colors">
+                        Remove Duplicates Now
+                    </button>
+                </div>
+
+                <!-- Input / Cleaned Text Area -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-semibold text-neutral-300">Paste multi-line list data here:</label>
+                        <button onclick="clearRemoveDuplicatesText()" class="text-xs text-neutral-400 hover:text-red-400 transition-colors flex items-center gap-1">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                            <span>Clear Text</span>
+                        </button>
+                    </div>
+                    <textarea
+                        id="rd-input-text"
+                        rows="8"
+                        oninput="processDuplicateLines()"
+                        placeholder="Paste list items here (one per line)...&#10;apple&#10;banana&#10;apple&#10;orange"
+                        class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl p-4 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-red-500 transition-colors resize-y font-mono"
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Client-Side List Processing</span>
+                </div>
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <button onclick="closeRemoveDuplicatesModal()" class="flex-1 sm:flex-initial px-3.5 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Close
+                    </button>
+                    <button onclick="copyCleanedDuplicatesText()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl transition-all">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>Copy Cleaned List</span>
+                    </button>
+                    <button onclick="downloadCleanedDuplicatesTxt()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Download Cleaned (.txt)</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Pro-Level Image Compressor Modal -->
     <div id="image-compressor-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">

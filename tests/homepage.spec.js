@@ -15,11 +15,11 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
 
         // Check cards count
         const cards = page.locator('.tool-card');
-        await expect(cards).toHaveCount(24);
+        await expect(cards).toHaveCount(25);
 
         // Check count indicator badge
         const countText = page.locator('#visible-count');
-        await expect(countText).toHaveText('24');
+        await expect(countText).toHaveText('25');
 
         // Screenshot homepage
         await page.screenshot({ path: 'screenshot-homepage.png', fullPage: true });
@@ -42,7 +42,7 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
 
         // Clear search
         await page.locator('#clear-search-btn').click();
-        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(24);
+        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(25);
     });
 
     test('Category filtering works as expected', async ({ page }) => {
@@ -59,7 +59,7 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
 
         // Click All Tools tab
         await page.locator('button[data-category="all"]').click();
-        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(24);
+        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(25);
     });
 
     test('JPG to PDF Modal workflow opens and operates properly', async ({ page }) => {
