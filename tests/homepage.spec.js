@@ -7,11 +7,11 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
     });
 
     test('Homepage loads correctly with brand title and 34 tool cards', async ({ page }) => {
-        await expect(page).toHaveTitle(/Kittutools/);
+        await expect(page).toHaveTitle(/KITTUTOOLS/i);
 
         // Brand logo verification
         const logo = page.locator('header a span').first();
-        await expect(logo).toHaveText('Kittutools');
+        await expect(logo).toHaveText('KITTUTOOLS');
 
         // Check cards count
         const cards = page.locator('.tool-card');
