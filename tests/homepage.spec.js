@@ -6,7 +6,7 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
         await page.goto('/');
     });
 
-    test('Homepage loads correctly with brand title and 20 tool cards', async ({ page }) => {
+    test('Homepage loads correctly with brand title and 21 tool cards', async ({ page }) => {
         await expect(page).toHaveTitle(/Kittutools/);
 
         // Brand logo verification
@@ -15,11 +15,11 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
 
         // Check cards count
         const cards = page.locator('.tool-card');
-        await expect(cards).toHaveCount(20);
+        await expect(cards).toHaveCount(21);
 
         // Check count indicator badge
         const countText = page.locator('#visible-count');
-        await expect(countText).toHaveText('20');
+        await expect(countText).toHaveText('21');
 
         // Screenshot homepage
         await page.screenshot({ path: 'screenshot-homepage.png', fullPage: true });
@@ -42,7 +42,7 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
 
         // Clear search
         await page.locator('#clear-search-btn').click();
-        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(20);
+        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(21);
     });
 
     test('Category filtering works as expected', async ({ page }) => {
@@ -53,13 +53,13 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
         await expect(visibleCards).toHaveCount(5);
         await expect(page.locator('#visible-count')).toHaveText('5');
 
-        // Click PDF Tools tab
+        // Click PDF Tools tab (now has 6 tools)
         await page.locator('button[data-category="pdf"]').click();
-        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(5);
+        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(6);
 
         // Click All Tools tab
         await page.locator('button[data-category="all"]').click();
-        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(20);
+        await expect(page.locator('.tool-card:not(.hidden)')).toHaveCount(21);
     });
 
     test('JPG to PDF Modal workflow opens and operates properly', async ({ page }) => {
@@ -97,6 +97,9 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
         // Open Contact Us
         await page.locator('button:has-text("Contact Us")').click();
         await expect(page.locator('#contact-modal')).toBeVisible();
+        await page.locator('#contact-modal input[type="text"]').fill('John Doe');
+        await page.locator('#contact-modal input[type="email"]').fill('john@example.com');
+        await page.locator('#contact-modal textarea').fill('Great website!');
         await page.locator('#contact-modal button[type="submit"]').click();
         await expect(page.locator('#contact-modal')).not.toBeVisible();
     });
