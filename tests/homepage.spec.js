@@ -85,6 +85,35 @@ test.describe('Kittutools Multi-Tool Homepage Tests', () => {
         await expect(modal).not.toBeVisible();
     });
 
+    test('WhatsApp contact buttons are correctly formatted, layered, and clickable on desktop and mobile', async ({ page }) => {
+        // Query all WhatsApp links on the page
+        const whatsappLinks = page.locator('a[href*="wa.me"]');
+        const count = await whatsappLinks.count();
+        expect(count).toBeGreaterThanOrEqual(3);
+
+        for (let i = 0; i < count; i++) {
+            const link = whatsappLinks.nth(i);
+            await expect(link).toHaveAttribute('href', 'https://wa.me');
+            await expect(link).toHaveAttribute('target', '_blank');
+            await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+
+            const classList = await link.getAttribute('class');
+            expect(classList).toContain('cursor-pointer');
+            expect(classList).toContain('pointer-events-auto');
+            expect(classList).toContain('z-50');
+        }
+
+        // Test floating WhatsApp button clickability on Desktop
+        const floatingBtn = whatsappLinks.last();
+        await expect(floatingBtn).toBeVisible();
+        await floatingBtn.click();
+
+        // Test floating WhatsApp button clickability on Mobile viewport
+        await page.setViewportSize({ width: 375, height: 667 });
+        await expect(floatingBtn).toBeVisible();
+        await floatingBtn.click();
+    });
+
     test('Footer legal modals open properly', async ({ page }) => {
         // Open Privacy Policy
         await page.locator('button:has-text("Privacy Policy")').click();
