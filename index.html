@@ -49,6 +49,9 @@
     <!-- jsPDF CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+    <!-- pdf-lib CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
     <!-- PDF.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
@@ -298,17 +301,17 @@
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
                          data-name="Merge PDF Combine PDF"
                          data-category="pdf"
-                         onclick="triggerUpcomingTool('Merge PDF')">
+                         onclick="openMergePdfModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <i data-lucide="layers" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
                         <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Merge PDF</h3>
                         <p class="text-neutral-400 text-xs leading-relaxed mb-4">Combine multiple PDF files into one ordered document with instant client-side processing.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
@@ -317,17 +320,17 @@
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
                          data-name="Split PDF Extract Pages"
                          data-category="pdf"
-                         onclick="triggerUpcomingTool('Split PDF')">
+                         onclick="openSplitPdfModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <i data-lucide="scissors" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
                         <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Split PDF</h3>
                         <p class="text-neutral-400 text-xs leading-relaxed mb-4">Separate specific pages or split entire PDF documents into independent individual files.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
@@ -336,17 +339,17 @@
                     <div class="tool-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 glow-effect relative cursor-pointer"
                          data-name="Compress PDF Reduce PDF Size"
                          data-category="pdf"
-                         onclick="triggerUpcomingTool('Compress PDF')">
+                         onclick="openCompressPdfModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <i data-lucide="minimize-2" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
                         <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">Compress PDF</h3>
                         <p class="text-neutral-400 text-xs leading-relaxed mb-4">Reduce PDF file size for easier sharing without sacrificing document quality.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
@@ -1086,6 +1089,9 @@
     <script src="js/pdf-to-image.js"></script>
     <script src="js/image-crop.js"></script>
     <script src="js/image-compressor.js"></script>
+    <script src="js/compress-pdf.js"></script>
+    <script src="js/merge-pdf.js"></script>
+    <script src="js/split-pdf.js"></script>
 
     <!-- Pro-Level Image Compressor Modal -->
     <div id="image-compressor-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
@@ -1213,6 +1219,322 @@
                     <button onclick="downloadAllCompressedZip()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
                         <i data-lucide="archive" class="w-4 h-4"></i>
                         <span>Download All (ZIP)</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tool 1: Pro-Level Compress PDF Modal -->
+    <div id="compress-pdf-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="minimize-2" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Pro-Level Compress PDF</h2>
+                        <p class="text-xs text-neutral-400">Reduce PDF file size locally with customizable compression presets</p>
+                    </div>
+                </div>
+                <button onclick="closeCompressPdfModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Drag & Drop PDF Dropzone -->
+                <div id="compress-pdf-dropzone" class="border-2 border-dashed border-neutral-800 hover:border-red-500/60 bg-neutral-900/30 hover:bg-neutral-900/60 rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 group">
+                    <input type="file" id="compress-pdf-file-input" accept="application/pdf" class="hidden">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-neutral-900 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors mb-3">
+                        <i data-lucide="upload-cloud" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-base font-semibold text-white mb-1">Drag & Drop PDF here, or <span class="text-red-500 underline group-hover:text-red-400">Browse File</span></h3>
+                    <p class="text-xs text-neutral-500">Supports single PDF file • 100% Client-Side Compression</p>
+                </div>
+
+                <!-- Detailed File Info Card -->
+                <div id="compress-pdf-file-info" class="hidden flex items-center justify-between bg-neutral-900/80 p-4 rounded-2xl border border-neutral-800">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-red-500/20 text-red-400">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p id="compress-pdf-file-name" class="text-sm font-bold text-white truncate max-w-xs sm:max-w-md">document.pdf</p>
+                            <p id="compress-pdf-file-size" class="text-xs text-neutral-400">Original Size: 0 KB</p>
+                        </div>
+                    </div>
+                    <button onclick="resetCompressPdfUI()" class="text-xs text-neutral-400 hover:text-red-400 px-3 py-1.5 rounded-lg border border-neutral-800 hover:bg-neutral-800 transition-colors">
+                        Change File
+                    </button>
+                </div>
+
+                <!-- Compression Level Presets -->
+                <div>
+                    <label class="block text-xs font-semibold text-neutral-300 mb-2" title="Select compression preset">
+                        Compression Level Presets <i data-lucide="help-circle" class="w-3 h-3 inline text-neutral-500"></i>
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <button type="button" onclick="selectCompressionPreset('extreme')" id="preset-extreme" class="compression-preset-btn bg-neutral-900 border border-neutral-800 hover:border-red-500/50 p-3.5 rounded-2xl text-left transition-all">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-xs text-white">Extreme Compression</span>
+                                <i data-lucide="zap" class="w-3.5 h-3.5 text-red-500"></i>
+                            </div>
+                            <p class="text-[11px] text-neutral-400">Low quality, smallest file size</p>
+                        </button>
+
+                        <button type="button" onclick="selectCompressionPreset('recommended')" id="preset-recommended" class="compression-preset-btn bg-red-600/20 border-2 border-red-500 p-3.5 rounded-2xl text-left transition-all">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-xs text-white">Recommended Compression</span>
+                                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-red-500"></i>
+                            </div>
+                            <p class="text-[11px] text-neutral-300">Good quality, optimal file size</p>
+                        </button>
+
+                        <button type="button" onclick="selectCompressionPreset('less')" id="preset-less" class="compression-preset-btn bg-neutral-900 border border-neutral-800 hover:border-red-500/50 p-3.5 rounded-2xl text-left transition-all">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-xs text-white">Less Compression</span>
+                                <i data-lucide="shield" class="w-3.5 h-3.5 text-neutral-400"></i>
+                            </div>
+                            <p class="text-[11px] text-neutral-400">High quality, larger file size</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Progress Bar -->
+                <div id="compress-pdf-progress-wrapper" class="hidden space-y-2 bg-neutral-900/60 p-4 rounded-2xl border border-neutral-800">
+                    <div class="flex items-center justify-between text-xs text-neutral-300">
+                        <span id="compress-pdf-progress-text">Compressing PDF document...</span>
+                        <i data-lucide="loader-2" class="w-4 h-4 animate-spin text-red-500"></i>
+                    </div>
+                    <div class="w-full bg-neutral-950 rounded-full h-2.5 overflow-hidden border border-neutral-800">
+                        <div id="compress-pdf-progress-bar" class="bg-red-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Final Compression Summary Box -->
+                <div id="compress-pdf-summary-box" class="hidden grid grid-cols-3 gap-4 bg-neutral-900/60 p-4 rounded-2xl border border-neutral-800 text-center">
+                    <div>
+                        <p class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Original Size</p>
+                        <p id="compress-orig-size-val" class="text-sm font-extrabold text-white">0 KB</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">New Size</p>
+                        <p id="compress-new-size-val" class="text-sm font-extrabold text-white">0 KB</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">% of Size Reduced</p>
+                        <p id="compress-saved-percent-val" class="text-sm font-extrabold text-green-400">0%</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Private Client-Side PDF Compression</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeCompressPdfModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Cancel
+                    </button>
+                    <button id="download-compressed-pdf-btn" onclick="downloadCompressedPdf()" disabled class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Download Compressed PDF</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tool 2: Ultimate Merge PDF Modal -->
+    <div id="merge-pdf-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="layers" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Ultimate Merge PDF</h2>
+                        <p class="text-xs text-neutral-400">Combine multiple PDF documents in your desired custom sequence</p>
+                    </div>
+                </div>
+                <button onclick="closeMergePdfModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Multi-file PDF Dropzone -->
+                <div id="merge-pdf-dropzone" class="border-2 border-dashed border-neutral-800 hover:border-red-500/60 bg-neutral-900/30 hover:bg-neutral-900/60 rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 group">
+                    <input type="file" id="merge-pdf-file-input" accept="application/pdf" multiple class="hidden">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-neutral-900 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors mb-3">
+                        <i data-lucide="files" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-base font-semibold text-white mb-1">Drag & Drop 2 or more PDF files here, or <span class="text-red-500 underline group-hover:text-red-400">Browse Files</span></h3>
+                    <p class="text-xs text-neutral-500">Multi-selection supported • Reorder files before merging</p>
+                </div>
+
+                <!-- Visual File List Header and Add More Files Button -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <h4 class="text-sm font-bold text-white">Files to Merge</h4>
+                        <span id="merge-file-count-badge" class="text-xs font-semibold px-2 py-0.5 rounded-md bg-neutral-900 text-neutral-400 border border-neutral-800">0 files</span>
+                    </div>
+
+                    <button id="add-more-pdf-btn" onclick="triggerAddMorePdfFiles()" class="inline-flex items-center gap-1.5 text-xs text-red-400 hover:text-red-300 font-semibold px-3 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-red-500/40 transition-colors">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        <span>Add More Files</span>
+                    </button>
+                </div>
+
+                <!-- Empty State -->
+                <div id="merge-empty-state" class="text-center py-10 border border-neutral-900 rounded-2xl bg-neutral-950/50">
+                    <p class="text-xs text-neutral-500">No PDFs selected. Upload 2 or more files above to reorder and merge.</p>
+                </div>
+
+                <!-- Interactive Visual List Cards -->
+                <div id="merge-file-cards-list" class="hidden space-y-3 max-h-80 overflow-y-auto pr-1"></div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Client-Side Merging via pdf-lib</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeMergePdfModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Cancel
+                    </button>
+                    <button id="merge-download-pdf-btn" onclick="executeMergeAndDownload()" disabled class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="layers" class="w-4 h-4"></i>
+                        <span>Merge & Download PDF</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tool 3: Advanced Split PDF Modal -->
+    <div id="split-pdf-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="scissors" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Advanced Split PDF</h2>
+                        <p class="text-xs text-neutral-400">Extract all pages or custom page ranges with instant client-side splitting</p>
+                    </div>
+                </div>
+                <button onclick="closeSplitPdfModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Single PDF Dropzone -->
+                <div id="split-pdf-dropzone" class="border-2 border-dashed border-neutral-800 hover:border-red-500/60 bg-neutral-900/30 hover:bg-neutral-900/60 rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 group">
+                    <input type="file" id="split-pdf-file-input" accept="application/pdf" class="hidden">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-neutral-900 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors mb-3">
+                        <i data-lucide="scissors" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-base font-semibold text-white mb-1">Drag & Drop PDF file to split, or <span class="text-red-500 underline group-hover:text-red-400">Browse File</span></h3>
+                    <p class="text-xs text-neutral-500">Supports single PDF file • Instant structure extraction</p>
+                </div>
+
+                <!-- Dynamic Preview Header & Active File Status -->
+                <div id="split-pdf-file-status" class="hidden flex items-center justify-between bg-neutral-900/80 p-4 rounded-2xl border border-neutral-800">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-red-500/20 text-red-400">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p id="split-pdf-file-name" class="text-sm font-bold text-white truncate max-w-xs sm:max-w-md">filename.pdf</p>
+                            <p id="split-pdf-file-size" class="text-xs text-neutral-400">0 KB</p>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Total Pages Found Badge Preview -->
+                    <div class="flex items-center gap-3">
+                        <div class="bg-red-600/20 border border-red-500/40 text-red-400 px-3.5 py-1.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5">
+                            <i data-lucide="book-open" class="w-4 h-4"></i>
+                            <span id="split-total-pages-badge">Total Pages: 0</span>
+                        </div>
+                        <button onclick="resetSplitPdfUI()" class="text-xs text-neutral-400 hover:text-red-400 px-3 py-1.5 rounded-lg border border-neutral-800 hover:bg-neutral-800 transition-colors">
+                            Change File
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Customization Options Bar -->
+                <div class="bg-neutral-900/40 p-5 rounded-2xl border border-neutral-800 space-y-4">
+                    <!-- Splitting Mode Selection (Tabs/Dropdown) -->
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-2" title="Choose splitting mode">
+                            Splitting Mode <i data-lucide="help-circle" class="w-3 h-3 inline text-neutral-500"></i>
+                        </label>
+                        <select id="split-mode-select" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-500">
+                            <option value="all">Extract All Pages (Converts every page into individual PDF files)</option>
+                            <option value="custom">Custom Range (Extract specific pages or page ranges)</option>
+                        </select>
+                    </div>
+
+                    <!-- Custom Range Input Box -->
+                    <div id="split-custom-range-container" class="hidden space-y-2">
+                        <label class="block text-xs font-semibold text-neutral-300">
+                            Custom Page Range:
+                        </label>
+                        <input type="text" id="split-custom-range-input" placeholder="e.g. 1-3, 5, 7-10" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-red-500 transition-colors">
+                        <p class="text-[11px] text-neutral-400">Use commas for specific pages and hyphens for page ranges (e.g. 1-3, 5, 7-10).</p>
+                    </div>
+
+                    <!-- Single PDF Output Checkbox Option -->
+                    <div id="split-single-pdf-option" class="pt-2 border-t border-neutral-800/80 flex items-center gap-3">
+                        <input type="checkbox" id="split-merge-single-checkbox" class="w-4 h-4 accent-red-600 rounded cursor-pointer">
+                        <label for="split-merge-single-checkbox" class="text-xs font-medium text-neutral-300 cursor-pointer hover:text-white transition-colors">
+                            Merge extracted custom range into a single PDF document
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Client-Side Splitting</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closeSplitPdfModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Cancel
+                    </button>
+                    <button id="split-download-pdf-btn" onclick="executeSplitAndDownload()" disabled class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="scissors" class="w-4 h-4"></i>
+                        <span>Split & Download</span>
                     </button>
                 </div>
             </div>
