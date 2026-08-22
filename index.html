@@ -249,7 +249,53 @@
         </div>
     </section>
 
-    <!-- Main Content Area -->
+    <!-- 🔥 Live Loot Deals Section (Positioned directly below Hero Section and above Tools Grid) -->
+    <section id="live-loot-deals-section" class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div class="relative p-6 sm:p-8 rounded-3xl bg-neutral-950/80 border-2 border-red-500/80 shadow-[0_0_20px_rgba(239,68,68,0.7)] backdrop-blur-md overflow-hidden">
+            <!-- Decorative Background Red Glows -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-red-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Header Row: Title & Category Filters -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-neutral-800/90 relative z-10">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-black uppercase tracking-wider animate-pulse">
+                            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                            Live Updates
+                        </span>
+                        <span class="text-xs font-extrabold text-neutral-400 uppercase tracking-widest font-copperplate">Handpicked Discounts</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-black text-white uppercase tracking-wider font-copperplate drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] flex items-center gap-2">
+                        <span>🔥 Live Loot Deals</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-neutral-400 font-medium mt-1">
+                        Instant price drops & flash deals from Amazon, Flipkart, Blinkit, and Zepto.
+                    </p>
+                </div>
+
+                <!-- Deal Category Filters ("All", "Groceries", "Electronics") -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0" id="deal-category-filters">
+                    <button data-deal-category="all" class="deal-filter-btn active bg-red-600 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(239,68,68,0.5)] whitespace-nowrap">
+                        All Deals
+                    </button>
+                    <button data-deal-category="groceries" class="deal-filter-btn bg-neutral-900/80 text-neutral-400 hover:text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all border border-neutral-800 whitespace-nowrap">
+                        Groceries
+                    </button>
+                    <button data-deal-category="electronics" class="deal-filter-btn bg-neutral-900/80 text-neutral-400 hover:text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all border border-neutral-800 whitespace-nowrap">
+                        Electronics
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Loot Deals Cards Grid -->
+            <div id="loot-deals-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+                <!-- Deals cards populated via js/deals.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area (20+ Tools Grid) -->
     <main id="categories-section" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
 
         <!-- Category Tabs & Active Count -->
@@ -1524,6 +1570,7 @@
 
     <!-- Scripts -->
     <script src="js/app.js"></script>
+    <script src="js/deals.js"></script>
     <script src="js/jpg-to-pdf.js"></script>
     <script src="js/pdf-to-image.js"></script>
     <script src="js/pdf-to-word.js"></script>
