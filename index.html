@@ -196,6 +196,46 @@
         </div>
     </header>
 
+    <!-- 🔥 Live Loot Deals Section -->
+    <section id="live-loot-deals-section" class="relative py-10 bg-black/60 border-b border-neutral-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-2xl bg-red-600/20 text-red-500 border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
+                        <i data-lucide="flame" class="w-7 h-7 animate-bounce"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-2xl sm:text-3xl font-black tracking-wider text-white uppercase font-copperplate drop-shadow-[0_0_12px_rgba(239,68,68,0.5)]">
+                                🔥 LIVE LOOT DEALS
+                            </h2>
+                            <span id="deals-count-badge" class="px-2.5 py-0.5 rounded-full bg-red-500/20 border border-red-500/30 text-red-400 font-bold text-xs font-mono">
+                                100+ Offers (70%+ Off)
+                            </span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-neutral-400 font-medium">Auto-updated real-time high discount price drops (70% - 95% Off)</p>
+                    </div>
+                </div>
+
+                <!-- Carousel Manual Control Arrows -->
+                <div class="flex items-center gap-3 self-end sm:self-auto">
+                    <button id="loot-carousel-prev" aria-label="Previous Deal" class="p-3 bg-neutral-900/90 hover:bg-red-600 text-neutral-300 hover:text-white rounded-2xl border border-neutral-800 hover:border-red-500 transition-all shadow-lg active:scale-95 group">
+                        <i data-lucide="chevron-left" class="w-5 h-5 group-hover:-translate-x-0.5 transition-transform"></i>
+                    </button>
+                    <button id="loot-carousel-next" aria-label="Next Deal" class="p-3 bg-neutral-900/90 hover:bg-red-600 text-neutral-300 hover:text-white rounded-2xl border border-neutral-800 hover:border-red-500 transition-all shadow-lg active:scale-95 group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-0.5 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Horizontal Scroll Track -->
+            <div id="loot-deals-track" class="flex items-stretch gap-5 overflow-x-auto scrollbar-none py-4 px-1 scroll-smooth">
+                <!-- Dynamic cards populated via js/deals.js -->
+            </div>
+        </div>
+    </section>
+
     <!-- Hero Section -->
     <section class="relative pt-16 pb-12 overflow-hidden border-b border-neutral-900">
         <!-- Background Radial Glow -->
@@ -1560,6 +1600,7 @@
     <script src="js/base64-converter.js"></script>
     <script src="js/tts-reader.js"></script>
     <script src="js/binary-converter.js"></script>
+    <script src="js/deals.js"></script>
 
     <!-- Tool 1: Dedicated PNG to JPG Converter Modal -->
     <div id="png-to-jpg-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
