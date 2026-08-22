@@ -60,6 +60,9 @@
         }
     </script>
 
+    <!-- docx CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+
     <!-- JSZip CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
@@ -402,19 +405,19 @@
 
                     <!-- Card 5: PDF to Word -->
                     <div class="tool-card neon-card group rounded-2xl p-5 relative cursor-pointer"
-                         data-name="PDF to Word Docx Converter"
+                         data-name="PDF to Word Docx Converter Extract Text"
                          data-category="pdf"
-                         onclick="triggerUpcomingTool('PDF to Word')">
+                         onclick="openPdfToWordModal()">
                         <div class="flex items-start justify-between mb-4">
-                            <div class="p-3 bg-neutral-900 text-neutral-400 rounded-xl group-hover:text-red-500 transition-colors">
+                            <div class="p-3 bg-red-500/10 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <i data-lucide="file-type-2" class="w-6 h-6"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-neutral-400 border border-neutral-800 px-2 py-0.5 rounded-md">Browser</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Live</span>
                         </div>
-                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">PDF to Word</h3>
-                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Extract readable text and formatting from PDF files into editable document formats.</p>
-                        <div class="flex items-center justify-between text-xs text-neutral-400 group-hover:text-red-500 font-semibold pt-2 border-t border-neutral-900">
-                            <span>Open Tool</span>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-red-400 transition-colors">PDF to Word Converter</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed mb-4">Extract readable text and formatting from PDF files into editable Microsoft Word (.docx) documents.</p>
+                        <div class="flex items-center justify-between text-xs text-red-500 font-semibold pt-2 border-t border-neutral-900">
+                            <span>Launch Tool</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
@@ -1144,6 +1147,129 @@
         </div>
     </div>
 
+    <!-- PDF to Word Converter Modal -->
+    <div id="pdf-to-word-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-neutral-950 border border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-8">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800/80 bg-neutral-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20">
+                        <i data-lucide="file-type-2" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">PDF to Word Converter</h2>
+                        <p class="text-xs text-neutral-400">Convert PDF documents into editable Microsoft Word (.docx) files locally in your browser</p>
+                    </div>
+                </div>
+                <button onclick="closePdfToWordModal()" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+
+                <!-- Drag and Drop Dropzone -->
+                <div id="pdf-to-word-dropzone" class="border-2 border-dashed border-neutral-800 hover:border-red-500/60 bg-neutral-900/30 hover:bg-neutral-900/60 rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 group">
+                    <input type="file" id="pdf-to-word-file-input" accept="application/pdf" class="hidden">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-neutral-900 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors mb-3">
+                        <i data-lucide="file-up" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-base font-semibold text-white mb-1">Drag & Drop PDF document here, or <span class="text-red-500 underline group-hover:text-red-400">Browse File</span></h3>
+                    <p class="text-xs text-neutral-500">Supports PDF files • 100% Client-Side Local Conversion</p>
+                </div>
+
+                <!-- Active File Status Card -->
+                <div id="pdf-to-word-file-status" class="hidden flex items-center justify-between bg-neutral-900/80 p-4 rounded-2xl border border-neutral-800">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-red-500/20 text-red-400">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p id="pdf-to-word-file-name" class="text-sm font-bold text-white truncate max-w-xs sm:max-w-md">document.pdf</p>
+                            <p id="pdf-to-word-file-size" class="text-xs text-neutral-400">0 KB</p>
+                        </div>
+                    </div>
+                    <button onclick="resetPdfToWordUI()" class="text-xs text-neutral-400 hover:text-red-400 px-3 py-1.5 rounded-lg border border-neutral-800 hover:bg-neutral-800 transition-colors">
+                        Change File
+                    </button>
+                </div>
+
+                <!-- Customization Options Bar -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-neutral-900/40 p-4 rounded-2xl border border-neutral-800/80">
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Layout Preset</label>
+                        <select id="pdf-word-layout-preset" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                            <option value="flow" selected>Plain Text Flow</option>
+                            <option value="blocks">Keep Layout (Basic Blocks)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Page Range</label>
+                        <select id="pdf-word-page-range-select" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                            <option value="all" selected>All Pages</option>
+                            <option value="custom">Custom Page Range</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-300 mb-1">Output Word Title</label>
+                        <input type="text" id="pdf-word-filename" value="Kittutools-Converted" placeholder="Document title" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-red-500">
+                    </div>
+                </div>
+
+                <!-- Custom Range Input Wrapper -->
+                <div id="pdf-word-custom-range-container" class="hidden bg-neutral-900/60 p-4 rounded-2xl border border-neutral-800 space-y-2">
+                    <label class="block text-xs font-semibold text-neutral-300">Enter Page Range (e.g. 1-5, 8)</label>
+                    <input type="text" id="pdf-word-custom-range-input" placeholder="e.g. 1-5, 8" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-red-500">
+                    <p class="text-[11px] text-neutral-400">Specify page numbers or ranges separated by commas (e.g., 1-3, 5).</p>
+                </div>
+
+                <!-- Loading Progress Bar -->
+                <div id="pdf-word-progress-wrapper" class="hidden space-y-2 bg-neutral-900/60 p-4 rounded-2xl border border-neutral-800">
+                    <div class="flex items-center justify-between text-xs text-neutral-300">
+                        <span id="pdf-word-progress-text">Extracting text content from PDF...</span>
+                        <i data-lucide="loader-2" class="w-4 h-4 animate-spin text-red-500"></i>
+                    </div>
+                    <div class="w-full bg-neutral-950 rounded-full h-2.5 overflow-hidden border border-neutral-800">
+                        <div id="pdf-word-progress-bar" class="bg-red-500 h-2.5 rounded-full transition-all duration-300 shadow-[0_0_10px_#EF4444]" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Text Extraction Summary / Preview Box -->
+                <div id="pdf-word-preview-box" class="hidden bg-neutral-900/60 p-4 rounded-2xl border border-neutral-800 space-y-2">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-white flex items-center gap-1.5">
+                            <i data-lucide="file-check" class="w-4 h-4 text-red-500"></i>
+                            <span>Extracted Text Summary</span>
+                        </span>
+                        <span id="pdf-word-stat-badge" class="text-[11px] font-mono text-red-400 font-semibold">0 pages • 0 chars</span>
+                    </div>
+                    <div id="pdf-word-preview-text" class="text-xs font-mono text-neutral-300 bg-neutral-950 p-3 rounded-xl max-h-36 overflow-y-auto border border-neutral-800 whitespace-pre-wrap"></div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-neutral-800/80 bg-neutral-900/50">
+                <div class="text-xs text-neutral-400 flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-red-500"></i>
+                    <span>100% Client-Side Extraction & Word Generation</span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="closePdfToWordModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-neutral-800 text-xs font-semibold text-neutral-300 hover:bg-neutral-900 transition-colors">
+                        Cancel
+                    </button>
+                    <button id="download-word-docx-btn" onclick="executePdfToWordConversion()" disabled class="neon-btn flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600 text-white font-semibold text-xs px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Convert & Download Word (.docx)</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <!-- Legal Modals (Privacy Policy, Terms of Service, Contact Us) -->
 
     <!-- Privacy Policy Modal -->
@@ -1400,6 +1526,7 @@
     <script src="js/app.js"></script>
     <script src="js/jpg-to-pdf.js"></script>
     <script src="js/pdf-to-image.js"></script>
+    <script src="js/pdf-to-word.js"></script>
     <script src="js/image-crop.js"></script>
     <script src="js/image-compressor.js"></script>
     <script src="js/compress-pdf.js"></script>
