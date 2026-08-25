@@ -102,4 +102,45 @@ test.describe('Kittutools Live Loot Deals Section E2E Suite', () => {
     await expect(overlay).toBeHidden();
   });
 
+  test('Every single loot deal link has valid direct product URL, clean target attributes, and proper z-index layering on desktop and mobile', async ({ page }) => {
+    // Validate rendered DOM elements
+    const linksData = await page.evaluate(() => {
+      const buttons = Array.from(document.querySelectorAll('#loot-deals-track .deal-card-item a.grab-deal-btn'));
+      return buttons.map(btn => ({
+        href: btn.getAttribute('href'),
+        target: btn.getAttribute('target'),
+        rel: btn.getAttribute('rel'),
+        className: btn.getAttribute('class')
+      }));
+    });
+
+    expect(linksData.length).toBeGreaterThan(0);
+
+    for (const item of linksData) {
+      // Verify href attribute is a valid direct store URL and does not contain '#' or whitespace
+      expect(item.href).toBeTruthy();
+      expect(item.href).not.toBe('#');
+      expect(item.href).toBe(item.href.trim());
+      expect(item.href).toMatch(/^https?:\/\//);
+
+      // Verify clean tab target attributes
+      expect(item.target).toBe('_blank');
+      expect(item.rel).toBe('noopener noreferrer');
+
+      // Verify Tailwind z-index and pointer-events layering classes
+      expect(item.className).toContain('relative');
+      expect(item.className).toContain('z-50');
+      expect(item.className).toContain('pointer-events-auto');
+      expect(item.className).toContain('cursor-pointer');
+    }
+
+    // Verify clickability on Mobile viewport
+    await page.setViewportSize({ width: 375, height: 667 });
+    const firstMobileBtn = page.locator('#loot-deals-track .deal-card-item a.grab-deal-btn').first();
+    await expect(firstMobileBtn).toBeVisible();
+
+    const hrefMobile = await firstMobileBtn.getAttribute('href');
+    expect(hrefMobile).toMatch(/^https?:\/\//);
+  });
+
 });
