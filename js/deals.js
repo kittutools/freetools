@@ -118,6 +118,9 @@
             card.setAttribute('data-deal-id', deal.id);
             card.setAttribute('data-index', index);
 
+            // Clean product URL
+            const cleanUrl = typeof deal.url === 'string' ? deal.url.trim() : '#';
+
             // Calculate countdown expiration
             let targetEndTime = Date.now() + (deal.expiresInSeconds * 1000);
 
@@ -186,12 +189,19 @@
                     </div>
 
                     <!-- Grab Deal CTA Button -->
-                    <a href="${deal.url}" target="_blank" rel="noopener noreferrer" class="neon-btn w-full inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95 uppercase tracking-wider font-copperplate">
+                    <a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="grab-deal-btn relative z-50 pointer-events-auto cursor-pointer neon-btn w-full inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2.5 rounded-xl transition-all shadow-lg shadow-red-600/20 active:scale-95 uppercase tracking-wider font-copperplate">
                         <span>Grab Deal Now</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
             `;
+
+            const grabBtn = card.querySelector('.grab-deal-btn');
+            if (grabBtn) {
+                grabBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
 
             fragment.appendChild(card);
 
